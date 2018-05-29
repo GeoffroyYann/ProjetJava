@@ -72,4 +72,46 @@ public class ControllerFacade implements IController {
     public IModel getModel() {
         return this.model;
     }
+    public void OrderPerform (final ControllerOrder controllerOrder) {
+    	switch (controllerOrder) {
+    	case Map1:
+    		//this.model.loadMap("MAP1");
+    		break;
+    	case Map2:
+    		//this.model.loadMap("MAP1");
+    		break;
+    	case Map3:
+    		//this.model.loadMap("MAP1");
+    		break;
+    	case Map3:
+    		//this.model.loadMap("MAP1");
+    		break;
+    	case Map4:
+    		//this.model.loadMap("MAP1");
+    		break;
+    	case Map5:
+    		//this.model.loadMap("MAP1");
+    		break;
+    	case MooveUp:
+    		break;
+    	case MooveDown:
+    		break;
+    	case MooveRight:
+    		break;
+    	case MooveLeft:
+    		break;
+    	case MooveRightUp:
+    		break;
+    	case MooveRightDown:
+    		break;
+    	case MooveLeftUp:
+    		break;
+    	case MooveLeftDown:
+    		break;
+    	case Shot:
+    		break;
+    	case Error:
+    		break;
+    	}
+    }
 }
