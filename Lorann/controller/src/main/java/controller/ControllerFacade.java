@@ -72,15 +72,12 @@ public class ControllerFacade implements IController {
     public IModel getModel() {
         return this.model;
     }
-    public void OrderPerform (final ControllerOrder controllerOrder) {
+    public void orderPerform (final ControllerOrder controllerOrder) {
     	switch (controllerOrder) {
     	case Map1:
     		//this.model.loadMap("MAP1");
     		break;
     	case Map2:
-    		//this.model.loadMap("MAP1");
-    		break;
-    	case Map3:
     		//this.model.loadMap("MAP1");
     		break;
     	case Map3:
@@ -114,4 +111,10 @@ public class ControllerFacade implements IController {
     		break;
     	}
     }
+
+	@Override
+	public void control() {
+		this.view.printMap("Press the key ‘A’, ‘Z’, ‘E’, ‘R’ or ‘T’ to choose a map. \nUse the keys Up, Down, Left or Right to move Lorann. \nUse the space key to make some crazy fireworks. \nEnjoy !");
+	}
+
 }
