@@ -1,8 +1,10 @@
-package model;
+package facade;
 
 import java.sql.SQLException;
 import java.util.List;
 
+import model.Example;
+import model.IModel;
 import model.dao.ExampleDAO;
 
 /**
