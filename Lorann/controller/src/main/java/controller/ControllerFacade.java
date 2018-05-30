@@ -97,14 +97,6 @@ public class ControllerFacade implements IController {
     		break;
     	case MooveLeft:
     		break;
-    	case MooveRightUp:
-    		break;
-    	case MooveRightDown:
-    		break;
-    	case MooveLeftUp:
-    		break;
-    	case MooveLeftDown:
-    		break;
     	case Shot:
     		break;
     	case Error:
