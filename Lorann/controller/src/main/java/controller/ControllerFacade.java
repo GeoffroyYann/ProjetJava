@@ -30,9 +30,12 @@ public class ControllerFacade implements IController {
      *            the model
      */
     public ControllerFacade(final IView view, final IModel model) {
-        super();
-        this.view = view;
-        this.model = model;
+        //super (); Don't know what to do with this...
+    	//view = new IView(); can't instantiate ?
+    	//model = new IModel(); can't instantiate ?
+    	
+    	this.view = view; // seems like this one is working
+        this.model = model; // seems like this one is working
     }
 
     /**
@@ -72,41 +75,17 @@ public class ControllerFacade implements IController {
     public IModel getModel() {
         return this.model;
     }
-    public void orderPerform (final ControllerOrder controllerOrder) {
-    	switch (controllerOrder) {
-    	case Map1:
-    		//this.model.loadMap("MAP1");
-    		break;
-    	case Map2:
-    		//this.model.loadMap("MAP1");
-    		break;
-    	case Map3:
-    		//this.model.loadMap("MAP1");
-    		break;
-    	case Map4:
-    		//this.model.loadMap("MAP1");
-    		break;
-    	case Map5:
-    		//this.model.loadMap("MAP1");
-    		break;
-    	case MooveUp:
-    		break;
-    	case MooveDown:
-    		break;
-    	case MooveRight:
-    		break;
-    	case MooveLeft:
-    		break;
-    	case Shot:
-    		break;
-    	case Error:
-    		break;
-    	}
-    }
 
 	@Override
 	public void control() {
-		this.view.printMap("Press the key ‘A’, ‘Z’, ‘E’, ‘R’ or ‘T’ to choose a map. \nUse the keys Up, Down, Left or Right to move Lorann. \nUse the space key to make some crazy fireworks. \nEnjoy !");
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void orderPerform(ControllerOrder controllerOrder) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

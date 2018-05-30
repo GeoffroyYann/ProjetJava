@@ -11,10 +11,6 @@ public enum ControllerOrder {
 	MooveDown,
 	MooveRight,
 	MooveLeft,
-	MooveRightUp,
-	MooveRightDown,
-	MooveLeftUp,
-	MooveLeftDown,
 	Shot,
 	Error
 }
