@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 public interface IElement {
     
-    boolean getPermability();
+    boolean getPermeability();
     
     BufferedImage getImage();
 

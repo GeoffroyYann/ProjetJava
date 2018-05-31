@@ -1,11 +1,9 @@
 package controller;
 
-import java.awt.Point;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.awt.*;
+import java.util.*;
 
-import controller.ControllerOrder;
+import controller.ControllerEnum;
 import model.IElement;
 import model.IFireBall;
 import model.ILorann;
@@ -63,7 +61,7 @@ public class Controller implements IController
 	}
 	
 	public void start() {
-		this.orderPerform(ControllerOrder.MENU);
+		this.orderPerform(ControllerEnum.MENU);
 		this.pseudo = this.view.getPseudo();
 		System.out.println(this.pseudo);
 		
@@ -143,27 +141,30 @@ public class Controller implements IController
 	
 	
 	
-	public void orderPerform(final ControllerOrder controllerOrder) 
-	{ if (controllerOrder == null)
+	public void orderPerform(final ControllerEnum ControllerEnum) 
+	{ if (ControllerEnum == null)
 		return;
 	
-		switch (controllerOrder) {
+		switch (ControllerEnum) {
 			case MENU:
 				this.model.loadMap("MENU");
-			case MAP1:
+			case Map1:
 				this.model.loadMap("MAP1");
 				break;
-			case MAP2:
+			case Map2:
 				this.model.loadMap("MAP2");
 				break;
-			case MAP3:
+			case Map3:
 				this.model.loadMap("MAP3");
 				break;
-			case MAP4:
+			case Map4:
 				this.model.loadMap("MAP4");
 				break;
-			case MAP5:
+			case Map5:
 				this.model.loadMap("MAP5");
+				break;
+			case Map6:
+				this.model.loadMap("MAP6");
 				break;
 			case MoveUp:
 				this.moveLorann(MobileOrder.Up);
@@ -177,15 +178,15 @@ public class Controller implements IController
 			case MoveLeft:
 				this.moveLorann(MobileOrder.Left);
 				break;
-			case Shoot:
-				this.shoot();
+			case Shot:
+				this.shot();
 				break;
 			default:
 				break;
 		}
 	}
 	
-	private void shoot() {
+	private void shot() {
 		if(this.fireBall != null)
 			return;
 		this.destroyFireBall();
@@ -211,10 +212,10 @@ public class Controller implements IController
 		Point currentPos = this.fireBall.getPos().getLocation();
 		MobileOrder direction = this.fireBall.getDirection();
 		for (MobileOrder dir : MobileOrder.getValues()) {
-			if( != dir.equals(direction)) {
+			if(!dir.equals(direction)) {
 				Point aroundPos = this.computeNextPos(dir, currentPos);
 				IElement element = this.tileMap[aroundPos.x][aroundPos.y];
-				String elementname = element.getClass().getSimpleName();
+				String elementName = element.getClass().getSimpleName();
 				if(elementName.contains("Monster")) {
 					this.tileMap[aroundPos.x][aroundPos.y] = model.element(' ', aroundPos) ;
 					this.monsters.remove(elementName);
@@ -223,7 +224,6 @@ public class Controller implements IController
 				}
 			}
 		}
-		this.fireBall.animate();
 		Point nextPos = this.computeNextPos(this.fireBall.getDirection(), currentPos);
 		this.swapFireBall(nextPos);
 		this.tileMap[currentPos.x][currentPos.y] = model.element(' ', currentPos.getLocation());
@@ -302,7 +302,7 @@ public class Controller implements IController
 		}
 	}
 	
-	public Point computeNextPos (MobileOrder direction, Point currentPos) {
+	public Point computeNextPos(MobileOrder direction, Point currentPos) {
 		Point nextPos = currentPos.getLocation();
 		
 		if(direction == null)
