@@ -1,4 +1,4 @@
-package element.modeldao;
+package modeldao;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;

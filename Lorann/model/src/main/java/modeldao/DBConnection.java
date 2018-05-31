@@ -1,4 +1,4 @@
-package element.modeldao;
+package modeldao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

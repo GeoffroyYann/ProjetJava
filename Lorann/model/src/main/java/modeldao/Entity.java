@@ -1,4 +1,4 @@
-package element.modeldao;
+package modeldao;
 
 abstract class Entity {
 

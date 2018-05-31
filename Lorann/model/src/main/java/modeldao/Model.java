@@ -1,4 +1,4 @@
-package element.modeldao;
+package modeldao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -22,28 +22,18 @@ import model.Example;
 import model.IModel;
 
 public class Model extends Observable implements IModel{
-
-    private String              map;
-    int                         x;
-    int                         y;
-    public Lorann               lorann;
-    public FireBall             fireball;
-    public Energy_Ball          energy_ball;
-    public Gate_Closed          gate_closed;
-    public Gate_Open            gate_open;
-    public Bone                 bone;
-    public Horizontal_Bone      horizontal_bone; 
-    public Vertical_Bone        vertical_bone;
-    public Monster1             monster1;
-    public Monster2             monster2;
-    public Monster3             monster3;
-    public Monster4             monster4;
-    public Purse                purse;
-    public Empt                 empt;
     
-    public Model(){
+    private String map;
+    private int score = 0;
+
+    public IElement element(){
+        
         this.map = "";
+        
+        private int x = 0;
+        private int y = 0;
         x++;
+        
         for (int i = 0; i != 240 ; i++){
             char c = (!map.equals("")) ? map.charAt(i) : ' ';
             if (c == '\n') {
@@ -120,21 +110,14 @@ public class Model extends Observable implements IModel{
         return this;
     }
 
-    @Override
-    public Example getExampleById(int id) throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Example getExampleByName(String name) throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public List<Example> getAllExamples() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
-    }
+   public void upNameAndScore(final int score, final String nickname){
+       try {
+           final DAOUploadScore daoUploadScore = new DAOUploadScore(DBConnection.getInstance().getConnection());
+           daoUploadScore.upNameAndScore(score, nickname);
+       }
+       catch (final SQLException e){
+           e.printStackTrace();
+       }
+       return null;
+   }
 }
