@@ -1,9 +1,11 @@
-package model;
+package facade;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import model.dao.ExampleDAO;
+import model.Example;
+import model.IModel;
+import modeldao.ExampleDAO;
 
 /**
  * <h1>The Class ModelFacade provides a facade of the Model component.</h1>
