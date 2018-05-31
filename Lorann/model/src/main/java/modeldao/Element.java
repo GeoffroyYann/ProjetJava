@@ -3,10 +3,8 @@ package modeldao;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.HashMap;
-import java.io.File;
 import javax.imageio.ImageIO;
-
-import contract.IElement;
+import model.IElement;
 
 public abstract class Element implements IElement{
     

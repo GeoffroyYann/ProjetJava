@@ -1,17 +1,12 @@
 package element.mobile;
 
 import modeldao.Element;
-import contract.IMobile;
-import contract.IModel;
-import contract.MobileOrder;
-
-import javax.imageio.ImageIO;
+import model.IMobile;
+import model.MobileOrder;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.IOException;
 
-public class Mobile extends Element implements Imobile{
+
+public class Mobile extends Element implements IMobile{
     
     public Point getPos() {
         return pos.getLocation();

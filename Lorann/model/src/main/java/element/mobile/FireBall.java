@@ -1,12 +1,11 @@
 package element.mobile;
 
 import java.awt.Point;
+import model.IFireBall;
+import model.MobileOrder;
 
-import contract.IFireball;
-import contract.MobileOrder;
-import modeldao.Element;
 
-public class FireBall extends Mobile implements IFireball {
+public class FireBall extends Mobile implements IFireBall {
     
     private int step = 1;
     
@@ -21,5 +20,17 @@ public class FireBall extends Mobile implements IFireball {
     public void setDirection(MobileOrder direction){
         this.direction = direction;
     }
+
+	@Override
+	public void move(MobileOrder order) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public MobileOrder getDirection() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

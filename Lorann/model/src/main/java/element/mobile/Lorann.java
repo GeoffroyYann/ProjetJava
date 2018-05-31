@@ -2,10 +2,10 @@ package element.mobile;
 
 import java.awt.*;
 
-import contract.IElement;
-import contract.ILorann;
-import contract.IView;
-import contract.MobileOrder;
+import model.IElement;
+import model.ILorann;
+import view.IView;
+import model.MobileOrder;
 import modeldao.Element;
 
 public class Lorann extends Mobile implements ILorann {
@@ -32,7 +32,7 @@ public class Lorann extends Mobile implements ILorann {
                 }
                 break;
             case Down:
-                if(this.direction == MobileOrder.Down && this.pos.x < view.getHeigh() / 32 - 1 && tileMap[this.pos.x + 1][this.pos.y].getPermeability()){
+                if(this.direction == MobileOrder.Down && this.pos.x < view.getHeight() / 32 - 1 && tileMap[this.pos.x + 1][this.pos.y].getPermeability()){
                     this.pos.setLocation(this.pos.getX() + 1, this.pos.getY());
                 }
                 break;

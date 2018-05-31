@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import javax.swing.JPanel;
 
+import model.IElement;
+
 class ViewPanel extends JPanel {
 
     /**

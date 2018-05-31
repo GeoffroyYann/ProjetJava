@@ -2,7 +2,7 @@ package controller;
 
 import java.awt.*;
 import java.util.*;
-
+import java.util.Observer;
 import controller.ControllerEnum;
 import model.IElement;
 import model.IFireBall;
@@ -13,6 +13,7 @@ import model.MobileOrder;
 import view.IView;
 
 
+@SuppressWarnings("deprecation")
 public class Controller implements IController
 {
 	private IView view;

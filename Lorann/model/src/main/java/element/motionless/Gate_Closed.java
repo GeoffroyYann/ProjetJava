@@ -1,8 +1,8 @@
 package element.motionless;
 
-public class ClosedDoor extends Motionless {
+public class Gate_Closed extends Motionless {
   
-    public ClosedDoor()
+    public Gate_Closed()
     {
         super("gate_closed.png", false);
     }

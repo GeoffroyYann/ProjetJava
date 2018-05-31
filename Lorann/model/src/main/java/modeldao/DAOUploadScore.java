@@ -3,12 +3,12 @@ package modeldao;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.ResultSet;
-import com.mysql.cj.jdbc.CallableStatement;
+import java.sql.CallableStatement;
 
 class DAOUploadScore extends DAOEntityScore<UploadScore>{
     
     public DAOUploadScore(final Connection connection) throws SQLException{
-        super(connexion);
+        super(connection);
     }
     
     public boolean update(final UploadScore entity){

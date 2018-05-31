@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.Point;
+import java.sql.SQLException;
 
 import model.IElement;
 import model.MobileOrder;
@@ -13,8 +14,6 @@ import model.MobileOrder;
  */
 public interface IController {
 
-    
-    void start();
     
     void orderPerform(ControllerEnum controllerEnum);
     

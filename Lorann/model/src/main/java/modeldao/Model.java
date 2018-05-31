@@ -1,5 +1,6 @@
 package modeldao;
 
+import java.awt.Point;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Observable;
@@ -17,75 +18,58 @@ import element.motionless.Gate_Open;
 import element.motionless.Gate_Closed;
 import element.motionless.Horizontal_Bone;
 import element.motionless.Purse;
+import element.motionless.Score;
+import element.motionless.Title;
 import element.motionless.Vertical_Bone;
 import model.Example;
+import model.IElement;
 import model.IModel;
 
+@SuppressWarnings("deprecation")
 public class Model extends Observable implements IModel{
     
-    private String map;
+    private String map = "";
     private int score = 0; 
 
-    public IElement element(){
+    public IElement element(char c, Point pos) {
         
-        this.map = "";
-        
-        private int x = 0;
-        private int y = 0;
-        x++;
-        
-        for (int i = 0; i != 240 ; i++){
-            char c = (!map.equals("")) ? map.charAt(i) : ' ';
-            if (c == '\n') {
-                y++;
-                x = 0;
-            }
             switch (c){
             case 'A':
-                this.lorann = new Lorann(x*32, y*32);
-                break;
+                return new Lorann(pos);
             case 'B':
-                this.fireball = new FireBall(x*32, y*32);
-                break;
+            	return new FireBall(pos);
             case 'C':
-                this.energy_ball = new Energy_Ball(x*32, y*32);
-                break;
+                return new Energy_Ball();
             case 'D':
-                this.gate_closed = new Gate_Closed(x*32, y*32);
-                break;
+                return new Gate_Closed();
             case 'E':
-                this.gate_open = new Gate_Open(x*32, y*32);
-                break;
+                return new Gate_Open();
             case 'F':
-                this.bone = new Bone(x*32, y*32);
-                break;
+                return new Bone();
             case 'G':
-                this.horizontal_bone = new Horizontal_Bone(x*32, y*32);
-                break;
+                return new Horizontal_Bone();
             case 'H':
-                this.vertical_bone = new Vertical_Bone(x*32, y*32);
-                break;
+                return new Vertical_Bone();
             case 'I':
-                this.monster1 = new Monster1(x*32, y*32);
-                break;
+                return new Monster1(pos);
             case 'J':
-                this.monster2 = new Monster2(x*32, y*32);
-                break;
+            	return new Monster2(pos);
             case 'K':
-                this.monster3 = new Monster3(x*32, y*32);
-                break;
+                return new Monster3(pos);
             case 'L':
-                this.monster4 = new Monster4(x*32, y*32);
-                break;
+                return new Monster4(pos);
             case 'M':
-                this.purse = new Purse(x*32, y*32);
-                break;
+                return new Purse();
             case 'N':
-                this.empt = new Empty(x*32, y*32);
-                break;
+            	return new Empty();
+            case 'O':
+            	return new Score();
+            case 'P':
+            	return new Title();
+            	
             }
         }
-    }
+    
     
     public String getMap(){
         return this.map;
@@ -96,7 +80,8 @@ public class Model extends Observable implements IModel{
         this.setChanged();
         this.notifyObservers();
     }
-    
+    public Model() {
+    }
     public void loadMap(final String key){
         try{
             final DAOMap daoMap = new DAOMap(DBConnection.getInstance().getConnection());
@@ -129,4 +114,22 @@ public class Model extends Observable implements IModel{
        }
        return null;
    }
+
+@Override
+public Example getExampleById(int id) throws SQLException {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public Example getExampleByName(String name) throws SQLException {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public List<Example> getAllExamples() throws SQLException {
+	// TODO Auto-generated method stub
+	return null;
+}
 }

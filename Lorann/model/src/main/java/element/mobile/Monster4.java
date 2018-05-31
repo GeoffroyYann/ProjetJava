@@ -1,28 +1,19 @@
 package element.mobile;
 
-public class Monster4 {
+import java.awt.Point;
 
-    private int x;
-    private int y;
-    
-    public Monster4(int x , int y){
-        this.x = x;
-        this.y = y;
-    }
-    
-    public int getX(){
-        return x;
-    }
-    
-    public void setX(int x){
-        this.x = x;
-    }
-    
-    public int getY(){
-        return y;
-    }
-    
-    public void setY(int y){
-        this.y = y;
-    }
+import model.IElement;
+import model.IMonster;
+import model.MobileOrder;
+
+public class Monster4 extends Mobile implements IMonster{
+	
+	public Monster4(Point pos) {
+		super("monster_4.png", true, pos);
+	}
+	
+	public MobileOrder getDirection(Point lorannpos, IElement[][] tileMap) {
+		return null;
+	}
+
 }

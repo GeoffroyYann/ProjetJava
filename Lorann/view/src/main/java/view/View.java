@@ -82,4 +82,16 @@ public class View implements IView, Runnable {
     public void setController(final IController controller) {
         this.viewFrame.setController(controller);
     }
+
+	@Override
+	public void displayMessage(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void printMap(String map) {
+		// TODO Auto-generated method stub
+		
+	}
 }

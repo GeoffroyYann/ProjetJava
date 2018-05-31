@@ -1,10 +1,12 @@
 package controller;
 
+import java.awt.Point;
 import java.sql.SQLException;
 import java.util.List;
-
 import model.Example;
+import model.IElement;
 import model.IModel;
+import model.MobileOrder;
 import view.IView;
 
 /**
@@ -76,16 +78,51 @@ public class ControllerFacade implements IController {
         return this.model;
     }
 
-	@Override
 	public void control() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void orderPerform(ControllerOrder controllerOrder) {
+	public void orderPerform(ControllerEnum controllerOrder) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public IElement[][] getTileMap() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getScore() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Point computeNextPos(MobileOrder direction, Point currentPos) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getLevel() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public IElement[][] parser(String tilemap) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String[][] getScores() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.sql.*;
 import java.util.*;
 
+import model.Example;
 import model.IElement;
 import model.IModel;
 
@@ -23,7 +24,7 @@ public final class ModelFacade implements IModel {
         super();
     }
 
-	@SuppressWarnings("deprecation")
+
 	@Override
 	public Observable getObservable() {
 		// TODO Auto-generated method stub
@@ -58,5 +59,23 @@ public final class ModelFacade implements IModel {
 	public void upNameAndScore(int score, String nickname) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Example getExampleById(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Example getExampleByName(String name) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Example> getAllExamples() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -40,7 +40,7 @@ class ViewFrame extends JFrame implements KeyListener {
         this.setModel(model);
     }
     
-    private IController getController() {
+    IController getController() {
         return this.controller;
     }
     
@@ -57,7 +57,7 @@ class ViewFrame extends JFrame implements KeyListener {
         this.model = model;
     }
     
-    private void buildViewFrame(final IModel model) {
+    private void buildViewFrame() {
         this.viewPanel = new ViewPanel(this);
         this.setModel(model);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,6 +66,10 @@ class ViewFrame extends JFrame implements KeyListener {
         this.setContentPane(this.viewPanel);
         this.setSize(400 , 60);
         this.setLocationRelativeTo(null);
+    }
+    
+    public void update() {
+    	this.viewPanel.update(this.controller.getTileMap());
     }
     
     public void setSize(int width, int height) {
@@ -87,4 +91,10 @@ class ViewFrame extends JFrame implements KeyListener {
     public String pseudo() {
         return JOptionPane.showInputDialog("Pseudo");
     }
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }
