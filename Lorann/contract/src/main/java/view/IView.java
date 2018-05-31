@@ -1,5 +1,7 @@
 package view;
 
+import controller.IController;
+
 /**
  * <h1>The Interface IView.</h1>
  *
@@ -7,12 +9,16 @@ package view;
  * @version 1.0
  */
 public interface IView {
-
-    /**
-     * Display message.
-     *
-     * @param message
-     *            the message
-     */
-    void displayMessage(String message);
-}
+    
+    void setController(IController controller);
+    
+    void repaint();
+    
+    int getHeight();
+    
+    int getWidth();
+    
+    String getPseudo();
+    
+    void printMessage(final String message);    
+    

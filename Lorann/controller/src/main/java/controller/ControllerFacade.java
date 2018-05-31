@@ -30,9 +30,12 @@ public class ControllerFacade implements IController {
      *            the model
      */
     public ControllerFacade(final IView view, final IModel model) {
-        super();
-        this.view = view;
-        this.model = model;
+        //super (); Don't know what to do with this...
+    	//view = new IView(); can't instantiate ?
+    	//model = new IModel(); can't instantiate ?
+    	
+    	this.view = view; // seems like this one is working
+        this.model = model; // seems like this one is working
     }
 
     /**
@@ -72,4 +75,17 @@ public class ControllerFacade implements IController {
     public IModel getModel() {
         return this.model;
     }
+
+	@Override
+	public void control() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void orderPerform(ControllerOrder controllerOrder) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
