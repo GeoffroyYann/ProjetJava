@@ -1,16 +1,15 @@
 package controller;
 
 public enum ControllerOrder {
-
-	Map1,
-	Map2,
-	Map3,
-	Map4,
-	Map5,
-	MooveUp,
-	MooveDown,
-	MooveRight,
-	MooveLeft,
-	Shot,
-	Error
+	MENU,
+	MAP1,
+	MAP2,
+	MAP3,
+	MAP4,
+	MAP5,
+	MoveUp,
+	MoveDown,
+	MoveRight,
+	MoveLeft,
+	Shoot
 }

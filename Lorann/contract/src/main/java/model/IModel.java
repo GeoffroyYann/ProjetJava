@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Point;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -43,4 +44,13 @@ public interface IModel {
     List<Example> getAllExamples() throws SQLException;
 
 	void loadMap(String string);
+
+	void upNameAndScore(int score, String pseudo);
+
+	ILorann element(char c, Point point);
+
+	String[][] getHighScore();
+
+	String getMap();
+
 }
