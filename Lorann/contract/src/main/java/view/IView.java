@@ -20,5 +20,10 @@ public interface IView {
     
     String getPseudo();
     
-    void printMessage(final String message);    
+    void printMessage(final String message);
+
+	void displayMessage(String message);
+
+	void printMap(String map);    
     
+}
