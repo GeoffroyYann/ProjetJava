@@ -11,6 +11,7 @@ import model.IElement;
  * @version 1.0
  */
 public interface IController {
+
     
     void start();
     
@@ -27,5 +28,6 @@ public interface IController {
     IElement[][] parser(String tilemap);
     
     String[][] getScores();
+
 
 }

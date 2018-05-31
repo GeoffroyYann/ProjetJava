@@ -1,5 +1,6 @@
 package model;
 
+
 import java.awt.*;
 
 public interface IMobile extends IElement {
@@ -12,4 +13,4 @@ public interface IMobile extends IElement {
     
     MobileOrder getDirection();
     
-}
+

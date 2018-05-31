@@ -22,4 +22,3 @@ public interface IView {
     
     void printMessage(final String message);    
     
-}

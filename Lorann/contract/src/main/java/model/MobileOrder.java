@@ -38,4 +38,5 @@ public enum MobileOrder {
     public static MobileOrder random() {
         return VALUES.get(RANDOM.nextInt(SIZE));
     }
+
 }

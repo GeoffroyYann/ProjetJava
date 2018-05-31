@@ -1,8 +1,10 @@
 package model;
 
+
 import java.awt.*;
 import java.util.Hashtable;
 import java.util.Observable;
+
 
 /**
  * <h1>The Interface IModel.</h1>
@@ -23,4 +25,5 @@ public interface IModel {
     String[][] getHighScore();
     
     void upNameAndScore(final int score, final String nickname);
+
 }

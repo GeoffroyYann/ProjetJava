@@ -1,5 +1,6 @@
 package model;
 
+
 import view.IView;
 
 public interface ILorann extends IMobile {
