@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.event.KeyEvent;
+import java.awt.*;
+import java.util.Hashtable;
 
 import javax.swing.SwingUtilities;
 
@@ -18,6 +20,14 @@ public class View implements IView, Runnable {
         SwingUtilities.invokeLater(this);
     }
     
+    public int getHeight() {
+        return this.viewFrame.getHeight();
+    }
+    
+    public int getWidth() {
+        return this.viewFrame.getWidth();
+    }
+    
     protected static ControllerEnum keyController(final int keyCode) {
         switch (keyCode) {
             case KeyEvent.VK_A:
@@ -30,6 +40,14 @@ public class View implements IView, Runnable {
                 return ControllerEnum.Map4;
             case KeyEvent.VK_T:
                 return ControllerEnum.Map5;
+            case KeyEvent.VK_Y:
+                return ControllerEnum.Map6;
+            case KeyEvent.VK_U:
+                return ControllerEnum.TEST;
+            case KeyEvent.VK_M:
+                return ControllerEnum.MENU;
+            case KeyEvent.VK_W:
+                return ControllerEnum.WORKSHOP;
             case KeyEvent.VK_UP:
                 return ControllerEnum.MoveUp;
             case KeyEvent.VK_DOWN:
@@ -41,25 +59,27 @@ public class View implements IView, Runnable {
             case KeyEvent.VK_SPACE:
                 return ControllerEnum.Shot;
             default:
-                return ControllerEnum.Error;
+                return null;
         }
     }
     
-    public void printMap(final String map) {
-        this.viewFrame.printMap(map);
+    public void printMessage(final String message) {
+        this.viewFrame.printMessage(message);
+    }
+    
+    public String getPseudo() {
+        return this.viewFrame.pseudo();
     }
     
     public void run() {
         this.viewFrame.setVisible(true);
     }
     
-    public void setController(final IController controller) {
-        this.viewFrame.setController(controller);
+    public void repaint() {
+        this.viewFrame.update();
     }
 
-    @Override
-    public void displayMessage(String message) {
-        // TODO Auto-generated method stub
-        
+    public void setController(final IController controller) {
+        this.viewFrame.setController(controller);
     }
 }

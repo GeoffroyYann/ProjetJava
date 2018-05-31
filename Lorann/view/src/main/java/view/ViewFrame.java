@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Color;
 import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
@@ -20,24 +19,25 @@ class ViewFrame extends JFrame implements KeyListener {
     private static final long serialVersionUID = 1L;
     private IModel          model;
     private IController     controller;
+    private ViewPanel       viewPanel;
     
     public ViewFrame(final IModel model) throws HeadlessException{
-       this.buildViewFrame(model); 
+       this.setModel(model); 
     }
     
     public ViewFrame(final IModel model, final GraphicsConfiguration gc) {
         super(gc);
-        this.buildViewFrame(model);
+        this.setModel(model);
     }
     
     public ViewFrame(final IModel model, final String title) throws HeadlessException{
         super(title);
-        this.buildViewFrame(model);
+        this.setModel(model);
     }
     
     public ViewFrame(final IModel model, final String title, final GraphicsConfiguration gc) {
         super(title, gc);
-        this.buildViewFrame(model);
+        this.setModel(model);
     }
     
     private IController getController() {
@@ -46,6 +46,7 @@ class ViewFrame extends JFrame implements KeyListener {
     
     protected void setController(final IController controller) {
         this.controller = controller;
+        this.buildViewFrame();
     }
     
     protected IModel getModel() {
@@ -57,18 +58,22 @@ class ViewFrame extends JFrame implements KeyListener {
     }
     
     private void buildViewFrame(final IModel model) {
+        this.viewPanel = new ViewPanel(this);
         this.setModel(model);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.addKeyListener(this);
-        this.setContentPane(new ViewPanel(this));
-        this.setSize(769 , 468);
+        this.setContentPane(this.viewPanel);
+        this.setSize(400 , 60);
         this.setLocationRelativeTo(null);
-        this.setBackground(Color.BLACK);
     }
     
-    public void printMap(final String map) {
-        JOptionPane.showMessageDialog(null, map);
+    public void setSize(int width, int height) {
+        super.setSize(width + this.getInsets().left + this.getInsets().right, height + this.getInsets().top + this.getInsets().bottom);
+    }
+    
+    public void printMessage(final String message) {
+        JOptionPane.showMessageDialog(null, message);
     }
     
     public void keyTyped(final KeyEvent e) {
@@ -79,7 +84,7 @@ class ViewFrame extends JFrame implements KeyListener {
         this.getController().orderPerform(View.keyController(e.getKeyCode()));
     }
     
-    public void keyReleased(final KeyEvent e) {
-        
+    public String pseudo() {
+        return JOptionPane.showInputDialog("Pseudo");
     }
 }

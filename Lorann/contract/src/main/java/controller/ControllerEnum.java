@@ -7,10 +7,14 @@ public enum ControllerEnum {
     Map3,
     Map4,
     Map5,
+    Map6,
+    TEST,
+    MENU,
+    WORKSHOP,
     MoveUp,
     MoveDown,
     MoveRight,
     MoveLeft,
     Shot,
-    Error  
+    Error,   
     }

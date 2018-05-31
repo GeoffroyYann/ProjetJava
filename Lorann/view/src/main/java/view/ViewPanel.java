@@ -1,26 +1,23 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.util.Observable;
-import java.util.Observer;
-
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.sql.Array;
+import java.sql.SQLException;
+import java.util.Arrays;
 import javax.swing.JPanel;
 
-public class ViewPanel extends JPanel implements Observer {
+class ViewPanel extends JPanel {
 
     /**
      * 
      */
     private static final long serialVersionUID = 1L;
     private ViewFrame               viewFrame;
+    private IElement[][]            tileMap;
     
     public ViewPanel(final ViewFrame viewFrame) {
         this.setViewFrame(viewFrame);
-        viewFrame.getModel().getObservable().addObserver(this);
     }
     
     private ViewFrame getViewFrame() {
@@ -31,109 +28,46 @@ public class ViewPanel extends JPanel implements Observer {
         this.viewFrame = viewFrame;
     }
     
-    public void update(final Observable arg0, final Object arg1) {
+    public void update(IElement[][] tileMap) {
+        this.tileMap = tileMap;
+        this.setSize(this.tileMap[0].length, this.tileMap.length);
         this.repaint();
     }
     
-    protected void paintComponent(final Graphics graphics) {
-        JPanel pan = new JPanel();
-        String level = new String(this.getViewFrame().getModel().getMap());
-        pan.setBackground(Color.BLACK);
-        this.setBackground(Color.BLACK);
-        System.out.println(level);
-        int i;
+    public void setSize(int width, int height) {
+        super.setSize((width*32) + this.getInsets().left + this.getInsets().right, (height*32) + this.getInsets().top + this.getInsets().bottom +40);
+        this.viewFrame.setSize(width*32, height*32 + 40);
+    }
+    
+    protected void PaintComponent(final Graphics graphics) {
+        graphics.setColor(Color.black);
+        graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
+        graphics.setColor(Color.yellow);
+        graphics.setFont(new Font(null, Font.BOLD, 20));
         
-        for (i = 0; i != 240; i++)
-        {
-            char caracter = (!level.equals("")) ? level.charAt(i) : ' ';
-            switch (caracter)
-            {
-            case 'A':
-                Icon laurann = new ImageIcon("");
-                JLabel l = new JLabel();
-                l.setIcon(laurann);
-                pan.add(l);
-                break;
-            case 'B':
-                Icon fireball = new ImageIcon("");
-                JLabel f1 = new JLabel();
-                f1.setIcon(fireball);
-                pan.add(f1);
-                break;
-            case 'C':
-                Icon energy_ball = new ImageIcon("");
-                JLabel c = new JLabel();
-                c.setIcon(energy_ball);
-                pan.add(c);
-                break;
-            case 'D':
-                Icon gate_closed = new ImageIcon("");
-                JLabel gc = new JLabel();
-                gc.setIcon(gate_closed);
-                pan.add(gc);
-                break;
-            case 'E':
-                Icon gate_open = new ImageIcon("");
-                JLabel go = new JLabel();
-                go.setIcon(gate_open);
-                pan.add(go);
-                break;
-            case 'F':
-                Icon bone = new ImageIcon("");
-                JLabel bo = new JLabel();
-                bo.setIcon(bone);
-                pan.add(bo);
-                break;
-            case 'G':
-                Icon horizontal_bone = new ImageIcon("");
-                JLabel hb = new JLabel();
-                hb.setIcon(horizontal_bone);
-                pan.add(hb);
-                break;
-            case 'H':
-                Icon vertical_bone = new ImageIcon("");
-                JLabel vb = new JLabel();
-                vb.setIcon(vertical_bone);
-                pan.add(vb);
-                break;
-            case 'I':
-                Icon monster_1 = new ImageIcon("");
-                JLabel m1 = new JLabel();
-                m1.setIcon(monster_1);
-                pan.add(m1);
-                break;
-            case 'J':
-                Icon monster_2 = new ImageIcon("");
-                JLabel m2 = new JLabel();
-                m2.setIcon(monster_2);
-                pan.add(m2);
-                break;
-            case 'K':
-                Icon monster_3 = new ImageIcon("");
-                JLabel m3 = new JLabel();
-                m3.setIcon(monster_3);
-                pan.add(m3);
-                break;
-            case 'L':
-                Icon monster_4 = new ImageIcon("");
-                JLabel m4 = new JLabel();
-                m4.setIcon(monster_4);
-                pan.add(m4);
-                break;
-            case 'M':
-                Icon purse = new ImageIcon("");
-                JLabel p = new JLabel();
-                p.setIcon(purse);
-                pan.add(p);
-                break;
-            case 'N':
-                Icon empty = new ImageIcon("");
-                JLabel empt = new JLabel();
-                empt.setIcon(empty);
-                pan.add(empt);
-                break;
+        int scoreIndex = 0;
+        
+        String[][] scores = null;
+        if(this.tileMap != null) {
+            for(int i = 0; i < this.tileMap.length; i++) {
+                for(int j = 0; i < this.tileMap[0].length; j++) {
+                    BufferedImage image = tileMap[i][j].getImage();
+                    if(image != null)
+                        graphics.drawImage(image, j*32, i*32, null);
+                    else if(tileMap[i][j].getClass().getSimpleName().contains("Title")) {
+                        graphics.drawString("HIGHSCORE", j*32, i*32 + 20);
+                    } else if(tileMap[i][j].getClass().getSimpleName().contains("Score")) {
+                        if(scores == null)
+                            scores = this.viewFrame.getController().getScores();
+                        
+                        if(scoreIndex < scores[0].length) {
+                            graphics.drawString(String.format("%s %s", scores[0][scoreIndex], scores[1][scoreIndex]), j*32 + 5, i*32 + 20);
+                            scoreIndex++;
+                        }
+                    }
+                }
             }
         }
-        this.add(pan);
+        graphics.drawString(String.format("SCORE : %d    LEVEL : %d", this.viewFrame.getController().getScore(), this.viewFrame.getController().getLevel()), 10, this.getHeight() - 20);
     }
 }
