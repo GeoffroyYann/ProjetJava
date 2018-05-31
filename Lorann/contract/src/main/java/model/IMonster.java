@@ -1,11 +1,11 @@
 package model;
 
-import java.awt.Point;
 
-public interface IMonster {
+import java.awt.*;
 
-	void setLocation(Point nextPos);
+public interface IMonster extends IMobile {
+    
+    MobileOrder getDirection(Point heroPos, IElement[][] tileMap);
 
-	Point getPos();
 
 }

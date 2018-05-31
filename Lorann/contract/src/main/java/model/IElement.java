@@ -1,7 +1,13 @@
 package model;
 
-public interface IElement {
 
-	boolean getPermeability();
+import java.awt.image.BufferedImage;
+
+public interface IElement {
+    
+    boolean getPermability();
+    
+    BufferedImage getImage();
+
 
 }

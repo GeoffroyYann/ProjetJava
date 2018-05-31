@@ -1,19 +1,12 @@
 package model;
 
-import java.awt.Point;
 
-public interface IFireBall {
+public interface IFireBall extends IMobile {
+    
+    void setDirection(MobileOrder direction);
+    
+    int getStep();
+    
 
-	Point getPos();
-
-	void setLocation(Point nextPos);
-
-	int getStep();
-
-	MobileOrder getDirection();
-
-	void animate();
-
-	void setDirection(MobileOrder direction);
 
 }
