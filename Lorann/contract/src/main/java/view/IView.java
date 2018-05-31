@@ -15,4 +15,16 @@ public interface IView {
      *            the message
      */
     void displayMessage(String message);
+
+	void printMap(String string);
+
+	String getPseudo();
+
+	void printMessage(String format);
+
+	void repaint();
+
+	int getHeight();
+
+	int getWidth();
 }
