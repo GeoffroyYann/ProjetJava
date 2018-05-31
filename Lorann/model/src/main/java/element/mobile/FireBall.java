@@ -1,28 +1,25 @@
 package element.mobile;
 
-public class FireBall {
+import java.awt.Point;
+
+import contract.IFireball;
+import contract.MobileOrder;
+import modeldao.Element;
+
+public class FireBall extends Mobile implements IFireball {
     
-    private int x;
-    private int y;
+    private int step = 1;
     
-    public FireBall(int x , int y){
-        this.x = x;
-        this.y = y;
+    public FireBall(Point pos){
+        super("fireball.gif", true, pos);
     }
     
-    public int getX(){
-        return x;
+    public int getStep(){ 
+        return step;
     }
     
-    public void setX(int x){
-        this.x = x;
+    public void setDirection(MobileOrder direction){
+        this.direction = direction;
     }
-    
-    public int getY(){
-        return y;
-    }
-    
-    public void setY(int y){
-        this.y = y;
-    } 
+
 }

@@ -1,28 +1,9 @@
 package element.motionless;
 
-public class Gate_Closed {
-
-    private int x;
-    private int y;
-    
-    public Gate_Closed(int x , int y){
-        this.x = x;
-        this.y = y;
+public class ClosedDoor extends Motionless {
+  
+    public ClosedDoor()
+    {
+        super("gate_closed.png", false);
     }
-    
-    public int getX(){
-        return x;
-    }
-    
-    public void setX(int x){
-        this.x = x;
-    }
-    
-    public int getY(){
-        return y;
-    }
-    
-    public void setY(int y){
-        this.y = y;
-    } 
 }

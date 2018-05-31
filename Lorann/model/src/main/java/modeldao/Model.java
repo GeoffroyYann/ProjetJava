@@ -11,10 +11,10 @@ import element.mobile.Monster2;
 import element.mobile.Monster3;
 import element.mobile.Monster4;
 import element.motionless.Bone;
-import element.motionless.Empt;
+import element.motionless.Empty;
 import element.motionless.Energy_Ball;
-import element.motionless.Gate_Closed;
 import element.motionless.Gate_Open;
+import element.motionless.Gate_Closed;
 import element.motionless.Horizontal_Bone;
 import element.motionless.Purse;
 import element.motionless.Vertical_Bone;
@@ -24,7 +24,7 @@ import model.IModel;
 public class Model extends Observable implements IModel{
     
     private String map;
-    private int score = 0;
+    private int score = 0; 
 
     public IElement element(){
         
@@ -81,7 +81,7 @@ public class Model extends Observable implements IModel{
                 this.purse = new Purse(x*32, y*32);
                 break;
             case 'N':
-                this.empt = new Empt(x*32, y*32);
+                this.empt = new Empty(x*32, y*32);
                 break;
             }
         }
@@ -116,6 +116,15 @@ public class Model extends Observable implements IModel{
            daoUploadScore.upNameAndScore(score, nickname);
        }
        catch (final SQLException e){
+           e.printStackTrace();
+       }
+   }
+   
+   public String[][] getHighScore(){
+       try{
+           final DAOGetHighscore daoGetHighscore = new DAOGetHighscore(DBConnection.getInstance().getConnection());
+           return (daoGetHighscore.getHighScore());
+       } catch (final SQLException e){
            e.printStackTrace();
        }
        return null;

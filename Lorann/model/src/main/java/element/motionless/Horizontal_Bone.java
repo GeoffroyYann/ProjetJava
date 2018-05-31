@@ -1,28 +1,8 @@
 package element.motionless;
 
-public class Horizontal_Bone {
+public class Horizontal_Bone extends Motionless {
 
-    private int x;
-    private int y;
-    
-    public Horizontal_Bone(int x , int y){
-        this.x = x;
-        this.y = y;
+    public Horizontal_Bone() {
+        super("horizontal_bone.png", false);
     }
-    
-    public int getX(){
-        return x;
-    }
-    
-    public void setX(int x){
-        this.x = x;
-    }
-    
-    public int getY(){
-        return y;
-    }
-    
-    public void setY(int y){
-        this.y = y;
-    } 
 }
