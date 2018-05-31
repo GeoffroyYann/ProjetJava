@@ -2,7 +2,6 @@ package model;
 
 
 import java.awt.*;
-import java.util.Hashtable;
 import java.util.Observable;
 
 
@@ -12,6 +11,7 @@ import java.util.Observable;
  * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0
  */
+@SuppressWarnings("deprecation")
 public interface IModel {
 
     Observable getObservable();

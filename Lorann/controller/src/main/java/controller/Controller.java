@@ -201,7 +201,7 @@ public class Controller implements IController
 		}
 	}
 	
-	public void update(Observable o, Object arg) {
+	public void update(@SuppressWarnings("deprecation") Observable o, Object arg) {
 		this.tileMap = parser(model.getMap());
 		this.view.repaint();
 	}
