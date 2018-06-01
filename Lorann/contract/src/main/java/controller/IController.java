@@ -1,8 +1,6 @@
 package controller;
 
 import java.awt.Point;
-import java.sql.SQLException;
-
 import model.IElement;
 import model.MobileOrder;
 
