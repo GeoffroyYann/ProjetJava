@@ -1,10 +1,8 @@
 package main;
 
-import java.sql.SQLException;
-
-import controller.ControllerFacade;
-import facade.ModelFacade;
-import view.ViewFacade;
+import controller.Controller;
+import modeldao.Model;
+import view.View;
 
 /**
  * <h1>The Class Main.</h1>
@@ -21,13 +19,11 @@ public abstract class Main {
      *            the arguments
      */
     public static void main(final String[] args) {
-        final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
-
-        try {
-            controller.start();
-        } catch (final SQLException exception) {
-            exception.printStackTrace();
-        }
+        final Model			model = new Model();
+        final View			view =new View(model);
+        final Controller	controller = new Controller(view, model);
+        view.setController(controller);
+        controller.start();
     }
 
 }
