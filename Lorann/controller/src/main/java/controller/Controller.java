@@ -55,7 +55,7 @@ public class Controller implements IController
 	
 	
 	public Controller(final IView view, final IModel model) {
-		model.getObservable().addObserver(this);
+		model.getObservable().addObserver((Observer) this);
 		this.setView(view);
 		this.setModel(model);
 		this.lorann = (ILorann) model.element('L', new Point());

@@ -68,6 +68,7 @@ public class Model extends Observable implements IModel{
             	return new Title();
             	
             }
+			return null;
         }
     
     
