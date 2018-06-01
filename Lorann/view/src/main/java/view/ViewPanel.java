@@ -5,11 +5,14 @@ import java.awt.image.BufferedImage;
 import java.sql.Array;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JPanel;
 
 import model.IElement;
 
-class ViewPanel extends JPanel {
+class ViewPanel extends JPanel implements Observer {
 
     /**
      * 
@@ -72,4 +75,10 @@ class ViewPanel extends JPanel {
         }
         graphics.drawString(String.format("SCORE : %d    LEVEL : %d", this.viewFrame.getController().getScore(), this.viewFrame.getController().getLevel()), 10, this.getHeight() - 20);
     }
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
+	}
 }

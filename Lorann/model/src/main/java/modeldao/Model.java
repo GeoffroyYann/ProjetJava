@@ -2,7 +2,6 @@ package modeldao;
 
 import java.awt.Point;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Observable;
 
 import element.mobile.FireBall;
@@ -21,7 +20,6 @@ import element.motionless.Purse;
 import element.motionless.Score;
 import element.motionless.Title;
 import element.motionless.Vertical_Bone;
-import model.Example;
 import model.IElement;
 import model.IModel;
 
@@ -114,22 +112,4 @@ public class Model extends Observable implements IModel{
        }
        return null;
    }
-
-@Override
-public Example getExampleById(int id) throws SQLException {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public Example getExampleByName(String name) throws SQLException {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public List<Example> getAllExamples() throws SQLException {
-	// TODO Auto-generated method stub
-	return null;
-}
 }

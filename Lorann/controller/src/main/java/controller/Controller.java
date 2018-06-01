@@ -55,10 +55,10 @@ public class Controller implements IController
 	
 	
 	public Controller(final IView view, final IModel model) {
-		model.getObservable().addObserver((Observer) this);
 		this.setView(view);
 		this.setModel(model);
-		this.lorann = (ILorann) model.element('L', new Point());
+		model.getObservable().addObserver();
+		this.lorann = (ILorann) model.element('A', new Point());
 	}
 	
 	public void start() {
@@ -94,11 +94,6 @@ public class Controller implements IController
 		}
 	}
 	
-	//public void control()
-	//{
-		//this.view.printMap("Press the key ‘A’, ‘Z’, ‘E’, ‘R’ or ‘T’ to display the map you have chosen. \nUse the key Up, Down, Left, Right to move Lorann. \nUse the space key to throw the fireball. \nNow let’s play.");
-	//}
-	
 	public IElement[][] parser(String tilemap) {
 		this.parser = true;
 		String[] lines = tilemap.split("\n");
@@ -120,14 +115,14 @@ public class Controller implements IController
 				Point pos = new Point(i, j);
 				
 				IElement element = this.model.element(c, pos);
-				if (c == 'L') {
+				if (c == 'A') {
 					this.dead = false;
 					this.lorann = (ILorann) element;
 				}
-				else if (c == 'C') {
+				else if (c == 'D') {
 					this.posGate = pos.getLocation();
 				}
-				else if (c == 'S') {
+				else if (c == 'O') {
 					this.scores = this.model.getHighScore();
 				}
 				if (element != null) {
@@ -149,23 +144,31 @@ public class Controller implements IController
 		switch (controllerEnum) {
 			case MENU:
 				this.model.loadMap("MENU");
+				this.level = 0;
+				break;
 			case Map1:
 				this.model.loadMap("MAP1");
+				this.level = 1;
 				break;
 			case Map2:
 				this.model.loadMap("MAP2");
+				this.level = 2;
 				break;
 			case Map3:
 				this.model.loadMap("MAP3");
+				this.level = 3;
 				break;
 			case Map4:
 				this.model.loadMap("MAP4");
+				this.level = 4;
 				break;
 			case Map5:
 				this.model.loadMap("MAP5");
+				this.level = 5;
 				break;
 			case Map6:
 				this.model.loadMap("MAP6");
+				this.level = 6;
 				break;
 			case MoveUp:
 				this.moveLorann(MobileOrder.Up);
@@ -195,7 +198,7 @@ public class Controller implements IController
 		Point currentPos = this.lorann.getPos().getLocation();
 		Point nextPos = this.computeNextPos(direction, currentPos);
 		if(!currentPos.equals(nextPos)) {
-			this.fireBall = (IFireBall) this.model.element('F', nextPos);
+			this.fireBall = (IFireBall) this.model.element('B', nextPos);
 			this.fireBall.setDirection(direction);
 			this.swapFireBall(nextPos);
 			this.view.repaint();
@@ -218,7 +221,7 @@ public class Controller implements IController
 				IElement element = this.tileMap[aroundPos.x][aroundPos.y];
 				String elementName = element.getClass().getSimpleName();
 				if(elementName.contains("Monster")) {
-					this.tileMap[aroundPos.x][aroundPos.y] = model.element(' ', aroundPos) ;
+					this.tileMap[aroundPos.x][aroundPos.y] = model.element('N', aroundPos) ;
 					this.monsters.remove(elementName);
 					this.destroyFireBall();
 					return;
@@ -227,7 +230,7 @@ public class Controller implements IController
 		}
 		Point nextPos = this.computeNextPos(this.fireBall.getDirection(), currentPos);
 		this.swapFireBall(nextPos);
-		this.tileMap[currentPos.x][currentPos.y] = model.element(' ', currentPos.getLocation());
+		this.tileMap[currentPos.x][currentPos.y] = model.element('N', currentPos.getLocation());
 		if(this.fireBall != null && this.fireBall.getStep() > 5) {
 			this.destroyFireBall();
 		}
@@ -241,7 +244,7 @@ public class Controller implements IController
 			this.destroyFireBall();
 			IMonster monster = this.monsters.get(nextElement);
 			Point monsterPos = monster.getPos().getLocation();
-			this.tileMap[monsterPos.x][monsterPos.y] = model.element(' ', monsterPos);
+			this.tileMap[monsterPos.x][monsterPos.y] = model.element('N', monsterPos);
 			System.out.println("Monster : " + this.monsters.remove(nextElement));
 			this.score += 500;
 			
@@ -259,13 +262,13 @@ public class Controller implements IController
 	private void moveLorann(MobileOrder order) {
 		Point pos = this.lorann.getPos();
 		this.lorann.move(order, tileMap, this.view);
-		this.tileMap[pos.x][pos.y] = model.element(' ', pos.getLocation());
+		this.tileMap[pos.x][pos.y] = model.element('N', pos.getLocation());
 		pos = this.lorann.getPos();
 		String elementName = this.tileMap[pos.x][pos.y].getClass().getSimpleName();
 		if(elementName.contains("Monster")) {
 			this.dead = true;
 		} else if (elementName.contains("Energy") && this.posGate != null) {
-			this.tileMap[this.posGate.x][this.posGate.y] = model.element('O', this.posGate);
+			this.tileMap[this.posGate.x][this.posGate.y] = model.element('E', this.posGate);
 			this.score += 100;
 		}	else if (elementName.contains("OpenGate")) {
 				this.level++;
@@ -296,7 +299,7 @@ public class Controller implements IController
 					!element.contains("Purse") &&
 					!element.contains("Energy") &&
 					!element.contains("Gate")) {
-				tileMap[pos.x][pos.y] = model.element(' ', pos.getLocation());
+				tileMap[pos.x][pos.y] = model.element('N', pos.getLocation());
 				monster.setLocation(nextPos);
 				tileMap[nextPos.x][nextPos.y] = monster;
 			}
@@ -342,7 +345,7 @@ public class Controller implements IController
 	private void destroyFireBall() {
 		if(this.fireBall != null) {
 			Point pos = this.fireBall.getPos().getLocation();
-			this.tileMap[pos.x][pos.y] = this.model.element(' ', pos);
+			this.tileMap[pos.x][pos.y] = this.model.element('N', pos);
 			this.fireBall = null;
 		}
 	}
