@@ -25,7 +25,6 @@ import model.Example;
 import model.IElement;
 import model.IModel;
 
-@SuppressWarnings("deprecation")
 public class Model extends Observable implements IModel{
     
     private String map = "";
