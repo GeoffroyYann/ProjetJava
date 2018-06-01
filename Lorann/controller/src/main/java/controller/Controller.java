@@ -24,7 +24,7 @@ public class Controller implements IController
 	private int level = 1;
 	private int score = 0;
 	private String[][] scores = null;
-	private Point posGate =null;
+	private Point posGate = null;
 	private HashMap<String, IMonster> monsters = new HashMap<String, IMonster>();
 	private IFireBall fireBall;
 	private boolean dead = false;
@@ -142,11 +142,11 @@ public class Controller implements IController
 	
 	
 	
-	public void orderPerform(final ControllerEnum ControllerEnum) 
-	{ if (ControllerEnum == null)
+	public void orderPerform(final ControllerEnum controllerEnum) 
+	{ if (controllerEnum == null)
 		return;
 	
-		switch (ControllerEnum) {
+		switch (controllerEnum) {
 			case MENU:
 				this.model.loadMap("MENU");
 			case Map1:
