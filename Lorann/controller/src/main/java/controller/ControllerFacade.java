@@ -2,10 +2,17 @@ package controller;
 
 import java.awt.Point;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+
+import javax.swing.text.html.parser.Element;
+
 import model.Example;
 import model.IElement;
+import model.IFireBall;
+import model.ILorann;
 import model.IModel;
+import model.IMonster;
 import model.MobileOrder;
 import view.IView;
 
@@ -22,22 +29,30 @@ public class ControllerFacade implements IController {
 
     /** The model. */
     private final IModel model;
-
+    IElement tileMap;
+    ILorann lorann;
+    String pseudo;
+    int level;
+    int score;
+    String[][] scores;
+    Point posGate;
+    HashMap<String, IMonster> monsters;
+    IFireBall fireBall;
+    boolean dead;
+    boolean parser;
     /**
      * Instantiates a new controller facade.
      *
      * @param view
      *            the view
      * @param model
-     *            the model
+     *            the model 
      */
-    public ControllerFacade(final IView view, final IModel model) {
-        //super (); Don't know what to do with this...
-    	//view = new IView(); can't instantiate ?
-    	//model = new IModel(); can't instantiate ?
-    	
-    	this.view = view; // seems like this one is working
-        this.model = model; // seems like this one is working
+    public ControllerFacade(final IView view, final IModel model, IElement tileMap) {
+        super ();
+    	this.view = view; 
+        this.model = model;
+        this.tileMap = tileMap;
     }
 
     /**

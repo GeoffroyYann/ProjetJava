@@ -1,31 +1,37 @@
 package view;
 
 import java.awt.event.KeyEvent;
-import java.awt.*;
-import java.util.Hashtable;
-
 import javax.swing.SwingUtilities;
 
 import controller.ControllerEnum;
 import controller.IController;
+import model.ILorann;
 import model.IModel;
+import showboard.BoardFrame;
 import view.IView;
 
 public class View implements IView, Runnable {
 
-    private final ViewFrame viewFrame;
+    private final BoardFrame boardFrame;
     
-    public View(final IModel model) {
-        this.viewFrame = new ViewFrame(model);
+    public View(final IModel model, final IController controller, final ControllerEnum controllerEnum, final ILorann lorann) {
+        
+    	this.setModel(model);
+        this.setLorann(lorann);
+        this.keylistener = new KeyListernerUser(eventPerformer);
+        this.getPseudo();
+        this.getLorann().getSprite().loadImage();
+        this.setCloseView(new Rectangle(0, 0, this.getPseudo().getWidth(), this.getPseudo().getHeight));
+        
         SwingUtilities.invokeLater(this);
     }
-    
+
     public int getHeight() {
-        return this.viewFrame.getHeight();
+        return this.boardFrame.getHeight();
     }
     
     public int getWidth() {
-        return this.viewFrame.getWidth();
+        return this.boardFrame.getWidth();
     }
     
     protected static ControllerEnum keyController(final int keyCode) {
@@ -64,23 +70,23 @@ public class View implements IView, Runnable {
     }
     
     public void printMessage(final String message) {
-        this.viewFrame.printMessage(message);
+        this.boardFrame.printMessage(message);
     }
     
     public String getPseudo() {
-        return this.viewFrame.pseudo();
+        return this.boardFrame.pseudo();
     }
     
     public void run() {
-        this.viewFrame.setVisible(true);
+        this.boardFrame.setVisible(true);
     }
     
     public void repaint() {
-        this.viewFrame.update();
+        this.boardFrame.validate();
     }
 
     public void setController(final IController controller) {
-        this.viewFrame.setController(controller);
+        this.boardFrame.setController(controller);
     }
 
 	@Override

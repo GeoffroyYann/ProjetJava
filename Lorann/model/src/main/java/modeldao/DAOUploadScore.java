@@ -2,7 +2,6 @@ package modeldao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.ResultSet;
 import java.sql.CallableStatement;
 
 class DAOUploadScore extends DAOEntityScore<UploadScore>{

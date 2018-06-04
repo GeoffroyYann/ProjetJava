@@ -2,25 +2,12 @@ package modeldao;
 
 import java.awt.Point;
 import java.sql.SQLException;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Observable;
 
-import element.mobile.FireBall;
-import element.mobile.Lorann;
-import element.mobile.Monster1;
-import element.mobile.Monster2;
-import element.mobile.Monster3;
-import element.mobile.Monster4;
-import element.motionless.Bone;
-import element.motionless.Empty;
-import element.motionless.Energy_Ball;
-import element.motionless.Gate_Open;
-import element.motionless.Gate_Closed;
-import element.motionless.Horizontal_Bone;
-import element.motionless.Purse;
-import element.motionless.Score;
-import element.motionless.Title;
-import element.motionless.Vertical_Bone;
+import element.mobile.*;
+import element.motionless.*;
 import model.Example;
 import model.IElement;
 import model.IModel;
@@ -68,6 +55,7 @@ public class Model extends Observable implements IModel{
             	return new Title();
             	
             }
+			return null;
         }
     
     
@@ -115,21 +103,24 @@ public class Model extends Observable implements IModel{
        return null;
    }
 
-@Override
-public Example getExampleById(int id) throws SQLException {
-	// TODO Auto-generated method stub
-	return null;
-}
+   @Override
+   public Example getExampleById(int id) throws SQLException {
+	   // TODO Auto-generated method stub
+	   return null;
+   }
 
-@Override
-public Example getExampleByName(String name) throws SQLException {
-	// TODO Auto-generated method stub
-	return null;
-}
+   @Override
+   public Example getExampleByName(String name) throws SQLException {
+	   // TODO Auto-generated method stub
+	   return null;
+   }
+
 
 @Override
 public List<Example> getAllExamples() throws SQLException {
 	// TODO Auto-generated method stub
 	return null;
 }
+
+
 }

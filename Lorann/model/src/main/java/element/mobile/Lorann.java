@@ -6,7 +6,6 @@ import model.IElement;
 import model.ILorann;
 import view.IView;
 import model.MobileOrder;
-import modeldao.Element;
 
 public class Lorann extends Mobile implements ILorann {
     

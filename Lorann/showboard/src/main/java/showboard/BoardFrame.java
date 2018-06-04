@@ -1,10 +1,14 @@
 package showboard;
 
 import java.awt.Dimension;
+import java.awt.HeadlessException;
 import java.awt.Rectangle;
 import java.util.Observer;
-
+import model.IModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import controller.IController;
 
 /**
  * <h1>The Class BoardFrame.</h1>
@@ -35,7 +39,10 @@ public class BoardFrame extends JFrame implements IBoard {
 
     /** The board panel. */
     private final BoardPanel  boardPanel;
+    
+    private IModel model;
 
+	private IController controller;
     /**
      * Instantiates a new board frame.
      *
@@ -55,6 +62,7 @@ public class BoardFrame extends JFrame implements IBoard {
         this.setContentPane(this.boardPanel);
         this.setResizable(false);
         this.setVisible(true);
+        this.setModel(model);
     }
 
     /**
@@ -73,7 +81,7 @@ public class BoardFrame extends JFrame implements IBoard {
     public BoardFrame() {
         this("", false);
     }
-
+    
     /**
      * Instantiates a new board frame.
      *
@@ -83,8 +91,21 @@ public class BoardFrame extends JFrame implements IBoard {
     public BoardFrame(final Boolean decorated) {
         this("", decorated);
     }
+    
+    public void setController (final IController controller) {
+    	this.controller = controller;
+    }
+        
+    
+    protected IModel getModel() {
+    	return this.model;
+    }
+    
+    private void setModel (IModel model) {
+		this.model = model;
+	}
 
-    /*
+	/*
      * (non-Javadoc)
      * @see fr.exia.showboard.IBoard#addSquare(fr.exia.showboard.ISquare, int, int)
      */
@@ -193,4 +214,16 @@ public class BoardFrame extends JFrame implements IBoard {
     public final void setHeightLooped(final Boolean heightLooped) {
         this.getBoardPanel().setHeightLooped(heightLooped);
     }
+
+	public void printMessage(String message) {
+		JOptionPane.showMessageDialog(null, message);
+		
+	}
+
+	public String pseudo() {
+		
+		return JOptionPane.showInputDialog("Pseudo");
+	}
+	
+	
 }

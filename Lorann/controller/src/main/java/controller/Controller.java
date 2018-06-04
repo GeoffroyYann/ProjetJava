@@ -2,7 +2,6 @@ package controller;
 
 import java.awt.*;
 import java.util.*;
-import java.util.Observer;
 import controller.ControllerEnum;
 import model.IElement;
 import model.IFireBall;
@@ -55,7 +54,7 @@ public class Controller implements IController
 	
 	
 	public Controller(final IView view, final IModel model) {
-		model.getObservable().addObserver(this);
+		model.getObservable().addObserver(null);
 		this.setView(view);
 		this.setModel(model);
 		this.lorann = (ILorann) model.element('L', new Point());
@@ -79,7 +78,7 @@ public class Controller implements IController
 			}
 			if (!this.parser) {
 				for (Object o : this.monsters.entrySet()) {
-					Map.Entry pair = (Map.Entry) o;
+					Map.Entry<?,?> pair = (Map.Entry<?,?>) o;
 					IMonster monster = (IMonster) pair.getValue();
 					this.moveMonster(monster);
 				}
@@ -110,7 +109,7 @@ public class Controller implements IController
 		this.posGate = null;
 		
 		for(IElement[] row: map)
-			Arrays.fill(row, this.model.element(' ', null));
+			Arrays.fill(row, this.model.element('N', null));
 		
 		for (int i = 0; i < x; i++)
 		{
@@ -202,7 +201,7 @@ public class Controller implements IController
 		}
 	}
 	
-	public void update(@SuppressWarnings("deprecation") Observable o, Object arg) {
+	public void update(Observable o, Object arg) {
 		this.tileMap = parser(model.getMap());
 		this.view.repaint();
 	}
