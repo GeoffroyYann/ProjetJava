@@ -36,5 +36,5 @@ public interface IPawn extends ISquare {
      * @return the position
      * @see Point
      */
-    Point getPosition();
+    Point getPos();
 }

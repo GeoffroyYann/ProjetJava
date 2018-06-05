@@ -1,10 +1,12 @@
 package controller;
 
+import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
-
-import model.Example;
+import controller.ControllerEnum;
+import model.IMobile;
 import model.IModel;
+import model.IMonster;
 import view.IView;
 
 /**
@@ -13,25 +15,30 @@ import view.IView;
  * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0
  */
-public class ControllerFacade implements IController {
+public class ControllerFacade implements IController, ControllerEnum {
 
     /** The view. */
     private final IView  view;
 
     /** The model. */
     private final IModel model;
-
+    
+    /** The keyEvent. */
+    private KeyEvent stackOrder;
+    
+    /** The speed of the game. */
+    private static int speed = 100;
     /**
      * Instantiates a new controller facade.
      *
      * @param view
      *            the view
      * @param model
-     *            the model
+     *            the model 
      */
     public ControllerFacade(final IView view, final IModel model) {
-        super();
-        this.view = view;
+        super ();
+    	this.view = view; 
         this.model = model;
     }
 
@@ -41,20 +48,50 @@ public class ControllerFacade implements IController {
      * @throws SQLException
      *             the SQL exception
      */
-    public void start() throws SQLException {
-        this.getView().displayMessage(this.getModel().getExampleById(1).toString());
-
-        this.getView().displayMessage(this.getModel().getExampleByName("Example 2").toString());
-
-        final List<Example> examples = this.getModel().getAllExamples();
-        final StringBuilder message = new StringBuilder();
-        for (final Example example : examples) {
-            message.append(example);
-            message.append('\n');
+    public void start() throws SQLException, InterruptedException, IOException {
+        
+        while(this.getModel().getLorann().isAlive()){
+            Thread.sleep(speed);
+            
+            for(IMobile monster : this.getModel().getMonsters()) {
+                ((IMonster)monster).move();
+            }
+            
+            if(this.getStackOrder() != null) {
+                switch(this.getStackOrder().getKeyCode()) {
+                case KeyEvent.VK_UP:
+                    this.getModel().getLorann().moveUp();
+                    break;
+                case KeyEvent.VK_DOWN:
+                    this.getModel().getLorann().moveDown();
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    this.getModel().getLorann().moveRight();
+                    break;
+                case KeyEvent.VK_LEFT:
+                    this.getModel().getLorann().moveLeft();
+                    break;
+                case KeyEvent.VK_SPACE:
+                    this.getModel().getLorann().shot();
+                    break;
+                default:
+                    this.getModel().getLorann().doNothing();
+                    break;    
+                }
+                this.stackOrder = null;
+            }
+            else {
+                this.getModel().getLorann().doNothing();
+            }
         }
-        this.getView().displayMessage(message.toString());
-    }
-
+        if(this.getModel().hasLorannWon()) {
+            this.getView().displayMessage("YEEEEEEEES");
+            System.exit(1);
+            }
+        else
+            this.getView().displayMessage("ARGH");
+        System.exit(1);
+        }
     /**
      * Gets the view.
      *
@@ -72,4 +109,41 @@ public class ControllerFacade implements IController {
     public IModel getModel() {
         return this.model;
     }
+    
+    /**Store orders.
+     * @param userOrder
+     * the order
+     */
+    public void performOrder(KeyEvent userOrder) {
+        this.setStackOrder(userOrder);
+    }
+    
+    /**
+     * Gets the order.
+     *
+     * @return the order
+     */
+    public KeyEvent getStackOrder() {
+        return stackOrder;
+    }
+    /**
+     * Set the order.
+     * @param stackOrder
+     *            the order
+     */
+    public void setStackOrder(KeyEvent stackOrder) {
+        this.stackOrder = stackOrder;
+    }
+    
+    /**
+     * Get OrderPerformer
+     * 
+     * @return the order performer
+     */
+    public ControllerEnum getOrderPerformer() {
+        return this;
+    }
+
+
+
 }

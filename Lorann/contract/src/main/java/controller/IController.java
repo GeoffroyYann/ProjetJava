@@ -1,5 +1,8 @@
 package controller;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 /**
  * <h1>The Interface IController.</h1>
  * 
@@ -8,4 +11,8 @@ package controller;
  */
 public interface IController {
 
+    
+    void start() throws SQLException, InterruptedException, IOException;
+    
+    ControllerEnum getOrderPerformer();
 }
