@@ -1,20 +1,12 @@
 package controller;
 
-import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-
-import javax.swing.text.html.parser.Element;
 import controller.ControllerEnum;
-import model.Example;
-import model.IElement;
 import model.IMobile;
 import model.IModel;
 import model.IMonster;
-import model.MobileOrder;
 import view.IView;
 
 /**
