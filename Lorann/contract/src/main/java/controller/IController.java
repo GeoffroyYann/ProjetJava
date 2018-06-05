@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.Point;
+import java.io.IOException;
 import java.sql.SQLException;
 
 import model.IElement;
@@ -15,19 +16,7 @@ import model.MobileOrder;
 public interface IController {
 
     
-    void orderPerform(ControllerEnum controllerEnum);
+    void start() throws SQLException, InterruptedException, IOException;
     
-    IElement[][] getTileMap();
-    
-    int getScore();
-    
-    Point computeNextPos(MobileOrder direction, Point currentPos);
-    
-    int getLevel();
-    
-    IElement[][] parser(String tilemap);
-    
-    String[][] getScores();
-
-
+    ControllerEnum getOrderPerformer();
 }

@@ -23,13 +23,15 @@ import view.IView;
  * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0
  */
-public class ControllerFacade implements IController {
+public class ControllerFacade implements IController, ControllerEnum {
 
     /** The view. */
     private final IView  view;
 
     /** The model. */
     private final IModel model;
+    
+    private KeyEvent stackOrder;
     
     private static int speed = 100;
     /**
@@ -54,7 +56,7 @@ public class ControllerFacade implements IController {
      */
     public void start() throws SQLException, InterruptedException, IOException {
         
-        while(this.getModel().getLorann().isAlive)){
+        while(this.getModel().getLorann().isAlive()){
             Thread.sleep(speed);
             
             for(IMobile monster : this.getModel().getMonsters()) {
@@ -76,7 +78,7 @@ public class ControllerFacade implements IController {
                     this.getModel().getLorann().moveLeft();
                     break;
                 case KeyEvent.VK_SPACE:
-                    this.getModel().getLorann().shot(1);
+                    this.getModel().getLorann().shot();
                     break;
                 default:
                     this.getModel().getLorann().doNothing();
@@ -142,5 +144,11 @@ public class ControllerFacade implements IController {
     public ControllerEnum getControllerEnum() {
         return this;
     }
+
+	@Override
+	public ControllerEnum getOrderPerformer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
