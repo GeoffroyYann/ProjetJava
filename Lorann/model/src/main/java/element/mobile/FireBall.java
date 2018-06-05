@@ -1,6 +1,5 @@
 package element.mobile;
 
-import java.awt.Point;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -9,21 +8,44 @@ import model.IMobile;
 import model.Permeability;
 import model.Sprite;
 
-
+/** The FireBall class
+ * 
+ * @author Yann GEOFFROY
+ *
+ */
 public class FireBall extends Mobile {
-    
+    /** First sprite*/
     private static Sprite sprite_1 = new Sprite(' ', "fireball_1");
+    /** Second sprite */
     private static Sprite sprite_2 = new Sprite(' ', "fireball_2");
+    /** Third sprite*/
     private static Sprite sprite_3 = new Sprite(' ', "fireball_3");
+    /** Fourth sprite*/
     private static Sprite sprite_4 = new Sprite(' ', "fireball_4");
+    /** Fifth sprite */
     private static Sprite sprite_5 = new Sprite(' ', "fireball_5");
+    /** Sprite of the death*/
     private static Sprite sprite_dead;
+    /** List of all the sprites of the spell */
     private Sprite[] sprites;
     
+    /** Direction of the spell
+     * 
+     */
     private int direction;
     
+    /** List of all monsters */
     private ArrayList<IMobile> monsters;
     
+    /** Instantiate a new FireBall 
+     * 
+     * @param level
+     * @param x
+     * @param y
+     * @param direction
+     * @param deadSprite
+     * @throws IOException
+     */
     public FireBall(ILevel level ,int x, int y, int direction, Sprite deadSprite) throws IOException {
         super(deadSprite, Permeability.FIREBALL, level, x, y);
         FireBall.sprite_dead = deadSprite;
@@ -120,6 +142,12 @@ public class FireBall extends Mobile {
         this.getPos().y = 0;
     }
     
+    /** Make the FireBall spawn
+     * 
+     * @param x
+     * @param y
+     * @param direction
+     */
     public void spawn(int x, int y, int direction) {
         if(this.setPos(x, y)) {
             this.direction = direction;
@@ -128,6 +156,10 @@ public class FireBall extends Mobile {
         }
     }
     
+    /** Add a monster
+     * 
+     * @param monster
+     */
     public void addMonster(IMobile monster) {
         this.monsters.add(monster);
     }

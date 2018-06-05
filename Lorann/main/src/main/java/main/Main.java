@@ -18,7 +18,7 @@ import view.ViewFacade;
 public abstract class Main {
 
     /**
-     * The main method.
+     * The main method with menu.
      *
      * @param args
      *            the arguments

@@ -16,12 +16,19 @@ import model.IModel;
 @SuppressWarnings("deprecation")
 public final class ModelFacade implements IModel {
 
+	/** The level */
 	private ILevel level;
+	/** Lorann */
 	private Lorann lorann;
+	/** Array of all purses */
 	private IMobile[] purses;
+	/** Array of all monsters */
 	private IMobile[] monsters;
+	/** The key */
 	private IMobile energy_Ball;
+	/** The gate */
 	private IMobile gate;
+	/** The fireBall */
 	private IMobile fireBall;
     /**
      * Instantiates a new model facade.
@@ -57,51 +64,60 @@ public final class ModelFacade implements IModel {
     }
 
 
+    /** gets lorann */
 	public Lorann getLorann() {
 		return this.lorann;
 	}
 
 
+	/** Gets the level */
 	public ILevel getLevel() {
 		return this.level;
 	}
 
+	/** Sets the level */
 	private void setLevel(ILevel level) {
 		this.level = level;
 	}
-	
+	/** Sets Lorann */
 	private void setLorann(Lorann lorann) {
 		this.lorann = lorann;
 	}
-	
+	/** Gets all the purses on the map */
 	public IMobile[] getPurses() {
 		return purses;
 	}
-	
+	/** Sets all the purses */
 	private void setPurses(IMobile[] purses) {
 		this.purses = purses;
 	}
 	
+	/** gets all the monsters */
 	public IMobile[] getMonsters() {
 		return monsters;
 	}
 	
+	/** Set all the monsters */
 	private void setMonsters(IMobile[] monsters) {
 		this.monsters = monsters;
 	}
 	
+	/** Gets the energy_Ball */
 	public IMobile getEnergy_Ball() {
 		return this.energy_Ball;
 	}
 	
+	/** Gets the gate */
 	public IMobile getGate() {
 		return this.gate;
 	}
 	
+	/** Checks if Lorann has won */
 	public boolean hasLorannWon() {
 		return ((Lorann)this.getLorann()).hasWon();
 	}
 	
+	/** Gets the FireBall */
 	public IMobile getFireBall() {
 		return this.fireBall;
 	}

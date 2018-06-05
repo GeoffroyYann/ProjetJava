@@ -1,19 +1,25 @@
 package element.mobile;
 
-import java.awt.Point;
-
-import model.IElement;
 import model.ILevel;
-import model.IMonster;
-import model.MobileOrder;
 import model.Sprite;
 
+/** the monster_2 class
+ * 
+ * @author Yann GEOFFROY
+ *
+ */
 public class Monster_2 extends Monster{
     
+	/** Sprite of the monster */
     private static Sprite sprite = new Sprite('J', "monster_2");
-    
+    /** Boolean that indicate if the monster goes right or left. */
     public boolean goingRight = true;
-    
+    /**
+     * constructor of Monster_2
+     * @param level
+     * @param x
+     * @param y
+     */
     public Monster_2(ILevel level, int x, int y) {
         super(sprite, level, x, y);
     }

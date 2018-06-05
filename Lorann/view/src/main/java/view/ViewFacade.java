@@ -23,22 +23,36 @@ import showboard.BoardFrame;
  */
 public class ViewFacade implements IView, KeyListener, Runnable {
 	
+	/** The Level. */
 	private ILevel level;
+	/** Lorann. */
 	private IMobile lorann;
+	/** The controller performer */
 	private ControllerEnum controllerEnum;
-	
+	/** The constant squareSize */
 	private static final int squareSize = 64;
-	
+	/** The constant fullView. */
 	private Rectangle fullView;
-	
+	/** The purses */
 	private IMobile[] purses;
+	/** The monsters */
 	private IMobile[] monsters;
+	/** The key */
 	private IMobile energy_Ball;
+	/** The gate */
 	private IMobile gate;
+	/** The fireBall */
 	private IMobile fireBall;
 
-    /**
-     * Instantiates a new view facade.
+    /** Instantiate a new ViewFacade
+     * 
+     * @param level
+     * @param Lorann
+     * @param purses
+     * @param monsters
+     * @param energy_Ball
+     * @param gate
+     * @param fireBall
      */
     public ViewFacade(ILevel level, IMobile Lorann, IMobile[]purses, IMobile[]monsters, IMobile energy_Ball, IMobile gate, IMobile fireBall) {
         try {
@@ -62,6 +76,9 @@ public class ViewFacade implements IView, KeyListener, Runnable {
         
     }
     
+    /** The game loop
+     * 
+     */
     public void run() {
     	BoardFrame boardFrame = new BoardFrame("Lorann", false);
     	boardFrame.setDimension(new Dimension(this.getLevel().getWidth(), this.getLevel().getHeight()));
@@ -120,11 +137,11 @@ public class ViewFacade implements IView, KeyListener, Runnable {
     public void keyPressed(KeyEvent keyEvent) {
     	this.getControllerEnum().performOrder(keyEvent);
     }
-    
+    /** Gets the level */
     public ILevel getLevel() {
     	return this.level;
     }
-    
+    /** Sets the level */
     public void setLevel(ILevel level) throws IOException {
     	this.level = level;
     	int y = 0;
@@ -135,27 +152,28 @@ public class ViewFacade implements IView, KeyListener, Runnable {
     		}
     	}
     }
-    
+    /** Gets Lorann */
     public IMobile getLorann() {
     	return this.lorann;
     }
-    
+    /** Sets Lorann */
     public void setLorann(IMobile lorann) {
     	this.lorann = lorann;
     }
     
+    /** Gets the Controller Enum*/
     public ControllerEnum getControllerEnum() {
     	return this.controllerEnum;
     }
-    
+    /** Sets the ControllerEnum */
     public void setControllerEnum(ControllerEnum orderPerformer) {
     	this.controllerEnum = orderPerformer;
     }
-    
+    /** Gets the fullView of a Rectangle */
     public Rectangle getFullView() {
     	return this.fullView = fullView;
     }
-    
+    /** Sets the fullView of a rectangle */
     public void setFullView(Rectangle fullView) {
     	this.fullView = fullView;
     }
