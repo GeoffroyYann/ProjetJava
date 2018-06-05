@@ -1,13 +1,15 @@
 package model;
 
 
-import java.awt.image.BufferedImage;
+import java.awt.Image;
 
 public interface IElement {
     
-    boolean getPermeability();
+    Permeability getPermeability();
     
-    BufferedImage getImage();
+    Sprite getSprite();
+    
+    Image getImage();
 
 
 }

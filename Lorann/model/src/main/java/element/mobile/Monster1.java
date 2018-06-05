@@ -3,29 +3,39 @@ package element.mobile;
 import java.awt.Point;
 
 import model.IElement;
+import model.ILevel;
 import model.IMonster;
 import model.MobileOrder;
+import model.Sprite;
 
-public class Monster1 extends Mobile implements IMonster{
-	
-	public Monster1(Point pos) {
-		super("monster_1.png", true, pos);
-	}
-	
-	public MobileOrder getDirection(Point lorannpos, IElement[][] tileMap) {
-		Point pos = this.getPos().getLocation();
-		MobileOrder direction = MobileOrder.random();
-		int distance = 10000;
-		for (MobileOrder dir : MobileOrder.values()) {
-			Point aroundPos = MobileOrder.getPos(pos, dir);
-			if (tileMap[aroundPos.x][aroundPos.y].getPermeability()) {
-				int aroundDist = (lorannpos.x-aroundPos.x)*(lorannpos.x-aroundPos.x) + (lorannpos.y-aroundPos.y)*(lorannpos.y-aroundPos.y);
-				if(aroundDist < distance) {
-					distance = aroundDist;
-					direction = dir;
-				}
-			}
-		}
-		return direction;		
-	}
+public class Monster1 extends Monster{
+    
+    private static Sprite sprite = new Sprite('I', "monster_1");
+    
+    public boolean goingUp = true;
+    
+    public Monster1(ILevel level, int x, int y) {
+        super(sprite, level, x, y);
+    }
+    
+    @Override
+    public void doNothing() {
+        
+    }
+    
+    @Override
+    public void move() {
+        if(this.goingUp) {
+            if(!this.moveUp()) {
+                this.moveDown();
+                goingUp = false;
+            }
+        }
+        else {
+            if(!this.moveDown()) {
+                this.moveUp();
+                goingUp = true;
+            }
+        }
+    }
 }

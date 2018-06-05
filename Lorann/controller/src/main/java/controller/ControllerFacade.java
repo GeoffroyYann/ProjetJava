@@ -1,16 +1,17 @@
 package controller;
 
 import java.awt.Point;
+import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.text.html.parser.Element;
-
+import controller.ControllerEnum;
 import model.Example;
 import model.IElement;
-import model.IFireBall;
-import model.ILorann;
+import model.IMobile;
 import model.IModel;
 import model.IMonster;
 import model.MobileOrder;
@@ -29,17 +30,8 @@ public class ControllerFacade implements IController {
 
     /** The model. */
     private final IModel model;
-    IElement tileMap;
-    ILorann lorann;
-    String pseudo;
-    int level;
-    int score;
-    String[][] scores;
-    Point posGate;
-    HashMap<String, IMonster> monsters;
-    IFireBall fireBall;
-    boolean dead;
-    boolean parser;
+    
+    private static int speed = 100;
     /**
      * Instantiates a new controller facade.
      *
@@ -48,11 +40,10 @@ public class ControllerFacade implements IController {
      * @param model
      *            the model 
      */
-    public ControllerFacade(final IView view, final IModel model, IElement tileMap) {
+    public ControllerFacade(final IView view, final IModel model) {
         super ();
     	this.view = view; 
         this.model = model;
-        this.tileMap = tileMap;
     }
 
     /**
@@ -61,8 +52,51 @@ public class ControllerFacade implements IController {
      * @throws SQLException
      *             the SQL exception
      */
-    public void start() throws SQLException {
-        this.getView().displayMessage(this.getModel().getExampleById(1).toString());
+    public void start() throws SQLException, InterruptedException, IOException {
+        
+        while(this.getModel().getLorann().isAlive)){
+            Thread.sleep(speed);
+            
+            for(IMobile monster : this.getModel().getMonsters()) {
+                ((IMonster)monster).move();
+            }
+            
+            if(this.getStackOrder() != null) {
+                switch(this.getStackOrder().getKeyCode()) {
+                case KeyEvent.VK_UP:
+                    this.getModel().getLorann().moveUp();
+                    break;
+                case KeyEvent.VK_DOWN:
+                    this.getModel().getLorann().moveDown();
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    this.getModel().getLorann().moveRight();
+                    break;
+                case KeyEvent.VK_LEFT:
+                    this.getModel().getLorann().moveLeft();
+                    break;
+                case KeyEvent.VK_SPACE:
+                    this.getModel().getLorann().shot(1);
+                    break;
+                default:
+                    this.getModel().getLorann().doNothing();
+                    break;    
+                }
+                this.stackOrder = null;
+            }
+            else {
+                this.getModel().getLorann().doNothing();
+            }
+        }
+        if(this.getModel().hasLorannWon()) {
+            this.getView().displayMessage("YEEEEEEEES");
+            System.exit(1);
+            }
+        else
+            this.getView().displayMessage("ARGH");
+        System.exit(1);
+        }
+        /*this.getView().displayMessage(this.getModel().getExampleById(1).toString());
 
         this.getView().displayMessage(this.getModel().getExampleByName("Example 2").toString());
 
@@ -72,8 +106,8 @@ public class ControllerFacade implements IController {
             message.append(example);
             message.append('\n');
         }
-        this.getView().displayMessage(message.toString());
-    }
+        this.getView().displayMessage(message.toString());*/
+    
 
     /**
      * Gets the view.
@@ -92,52 +126,21 @@ public class ControllerFacade implements IController {
     public IModel getModel() {
         return this.model;
     }
-
-	public void control() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void orderPerform(ControllerEnum controllerOrder) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public IElement[][] getTileMap() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getScore() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Point computeNextPos(MobileOrder direction, Point currentPos) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getLevel() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public IElement[][] parser(String tilemap) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String[][] getScores() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    
+    public void performOrder(KeyEvent userOrder) {
+        this.setStackOrder(userOrder);
+    }
+    
+    public KeyEvent getStackOrder() {
+        return stackOrder;
+    }
+    
+    public void setStackOrder(KeyEvent stackOrder) {
+        this.stackOrder = stackOrder;
+    }
+    
+    public ControllerEnum getControllerEnum() {
+        return this;
+    }
 
 }

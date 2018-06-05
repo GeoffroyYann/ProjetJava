@@ -1,10 +1,12 @@
 package element.motionless;
 
-import modeldao.Element;
+import element.Element;
+import model.Permeability;
+import model.Sprite;
 
-public abstract class Motionless extends Element {
+abstract class Motionless extends Element {
 
-    public Motionless(String imagePath, final boolean permeability){
-        super(imagePath, permeability);
+    public Motionless(final Sprite sprite, final Permeability permeability){
+        super(sprite, permeability);
     }
 }
