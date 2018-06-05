@@ -6,6 +6,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/** <h1>The enum MobileOrder.</h1>
+ * 
+ * @author YannGeoffroy
+ *
+ */
 public enum MobileOrder {
     Up,
     Down,
@@ -15,6 +20,7 @@ public enum MobileOrder {
     public static List<MobileOrder> getValues(){
         return VALUES;
     }
+    
     public static Point getPos(Point pos, MobileOrder direction) {
         switch (direction) {
         case Left:

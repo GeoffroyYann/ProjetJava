@@ -3,6 +3,10 @@ package model;
 import java.awt.Point;
 import java.util.Observable;
 
+/**
+ * <h1>The Interface IModel.</h1>
+ * 
+ */
 public interface ILevel {
     int getWidth();
     int getHeight();

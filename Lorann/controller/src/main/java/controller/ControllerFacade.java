@@ -23,8 +23,10 @@ public class ControllerFacade implements IController, ControllerEnum {
     /** The model. */
     private final IModel model;
     
+    /** The keyEvent. */
     private KeyEvent stackOrder;
     
+    /** The speed of the game. */
     private static int speed = 100;
     /**
      * Instantiates a new controller facade.
@@ -90,19 +92,6 @@ public class ControllerFacade implements IController, ControllerEnum {
             this.getView().displayMessage("ARGH");
         System.exit(1);
         }
-        /*this.getView().displayMessage(this.getModel().getExampleById(1).toString());
-
-        this.getView().displayMessage(this.getModel().getExampleByName("Example 2").toString());
-
-        final List<Example> examples = this.getModel().getAllExamples();
-        final StringBuilder message = new StringBuilder();
-        for (final Example example : examples) {
-            message.append(example);
-            message.append('\n');
-        }
-        this.getView().displayMessage(message.toString());*/
-    
-
     /**
      * Gets the view.
      *
@@ -121,26 +110,40 @@ public class ControllerFacade implements IController, ControllerEnum {
         return this.model;
     }
     
+    /**Store orders.
+     * @param userOrder
+     * the order
+     */
     public void performOrder(KeyEvent userOrder) {
         this.setStackOrder(userOrder);
     }
     
+    /**
+     * Gets the order.
+     *
+     * @return the order
+     */
     public KeyEvent getStackOrder() {
         return stackOrder;
     }
-    
+    /**
+     * Set the order.
+     * @param stackOrder
+     *            the order
+     */
     public void setStackOrder(KeyEvent stackOrder) {
         this.stackOrder = stackOrder;
     }
     
-    public ControllerEnum getControllerEnum() {
+    /**
+     * Get OrderPerformer
+     * 
+     * @return the order performer
+     */
+    public ControllerEnum getOrderPerformer() {
         return this;
     }
 
-	@Override
-	public ControllerEnum getOrderPerformer() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }

@@ -5,6 +5,10 @@ import java.awt.*;
 
 import showboard.IPawn;
 
+/**
+ * <h1>The Interface IMobile.</h1>
+ * 
+ */
 public interface IMobile extends IElement, IPawn {
     
     boolean moveUp();
