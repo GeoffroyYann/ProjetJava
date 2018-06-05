@@ -1,6 +1,7 @@
 package element.mobile;
 
 import java.awt.Point;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import model.ILevel;
@@ -23,14 +24,14 @@ public class FireBall extends Mobile {
     
     private ArrayList<IMobile> monsters;
     
-    public FireBall(ILevel level ,int x, int y, int direction, Sprite deadSprite) {
+    public FireBall(ILevel level ,int x, int y, int direction, Sprite deadSprite) throws IOException {
         super(deadSprite, Permeability.FIREBALL, level, x, y);
-        this.sprite_dead = deadSprite;
-        this.sprite_1.loadImage();
-        this.sprite_2.loadImage();
-        this.sprite_3.loadImage();
-        this.sprite_4.loadImage();
-        this.sprite_5.loadImage();
+        FireBall.sprite_dead = deadSprite;
+        FireBall.sprite_1.loadImage();
+        FireBall.sprite_2.loadImage();
+        FireBall.sprite_3.loadImage();
+        FireBall.sprite_4.loadImage();
+        FireBall.sprite_5.loadImage();
         
         this.sprites = new Sprite[5];
         
@@ -39,8 +40,6 @@ public class FireBall extends Mobile {
         this.sprites[2] = sprite_3;
         this.sprites[3] = sprite_4;
         this.sprites[4] = sprite_5;
-        
-        direction = 0;
         
         this.collect();
         
@@ -91,7 +90,7 @@ public class FireBall extends Mobile {
                 this.setSprite(sprites[0]);
             
             for (IMobile monster : monsters) {
-                if(monster.getPosition().getX() == this.getX() && monster.getPosition().getY() == this.getY())
+                if(monster.getPos().getX() == this.getX() && monster.getPos().getY() == this.getY())
                 {
                     monster.collect();
                     this.collect();
@@ -117,8 +116,8 @@ public class FireBall extends Mobile {
     public void die() {
         super.die();
         this.setSprite(sprite_dead);
-        this.getPosition().x = 0;
-        this.getPosition().y = 0;
+        this.getPos().x = 0;
+        this.getPos().y = 0;
     }
     
     public void spawn(int x, int y, int direction) {

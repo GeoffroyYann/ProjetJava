@@ -32,4 +32,4 @@ public class Energy_Ball extends Mobile {
     }
 }
 
-}
+

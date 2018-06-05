@@ -1,6 +1,6 @@
 package element.mobile;
 
-import modeldao.Element;
+import element.Element;
 import model.ILevel;
 import model.IMobile;
 import model.MobileOrder;
@@ -10,14 +10,14 @@ import model.Sprite;
 import java.awt.*;
 
 
-public class Mobile extends Element implements IMobile{
+public abstract class Mobile extends Element implements IMobile{
     
     private Point position;
     private boolean alive = true;
     private ILevel level;
     
-    private int lastX = 0;
-    private int lastY = 0;
+    protected int lastX = 0;
+    protected int lastY = 0;
 
     public Mobile(Sprite sprite, Permeability permeability, ILevel level) {
         this(sprite, permeability, level, 0, 0);
@@ -27,8 +27,8 @@ public class Mobile extends Element implements IMobile{
         super(sprite, permeability);
         this.level = level;
         this.position = new Point();
-        this.getPosition().x = x;
-        this.getPosition().y = y;
+        this.getPos().x = x;
+        this.getPos().y = y;
     }
 
     @Override
@@ -77,12 +77,12 @@ public class Mobile extends Element implements IMobile{
 
     @Override
     public int getX() {
-        return this.getPosition().x;
+        return this.getPos().x;
     }
     
     public boolean setX(int x) {
         if (!this.isOnWall(x, this.getY())) {
-            this.getPosition().x = x;
+            this.getPos().x = x;
             return true;
         }
         return false;
@@ -90,23 +90,23 @@ public class Mobile extends Element implements IMobile{
 
     @Override
     public int getY() {
-        return this.getPosition().y;
+        return this.getPos().y;
     }
     
     public boolean setY(int y) {
         if (!this.isOnWall(this.getX(), y)) {
-            this.getPosition().y = y;
+            this.getPos().y = y;
             return true;
         }
         return false;
     }
     
     public void initX(int x) {
-        this.getPosition().x = x;
+        this.getPos().x = x;
     }
     
     public void initY(int y) {
-        this.getPosition().y = y;
+        this.getPos().y = y;
     }
 
     @Override
@@ -124,15 +124,12 @@ public class Mobile extends Element implements IMobile{
     }
 
     @Override
-    public Point getPosition() {
+    public Point getPos() {
         return this.position;
     }
 
-    @Override
-    public void shot(int direction) {
-        int x = this.getX() - lastX;
-        int y = this.getY() - lastY;
-        this.level.setSpellOnTheLevelXY(x, y, new Spell(this.getLevel(), x, y, 1));
+    public void shot() {
+        
     }
     
     public void die() {
@@ -142,5 +139,9 @@ public class Mobile extends Element implements IMobile{
     
     protected ILevel getLevel() {
         return this.level;
+    }
+    
+    public void move() {
+    	
     }
 }

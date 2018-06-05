@@ -51,4 +51,16 @@ public class Sprite {
     public void setConsoleImage(char consoleImage) {
         this.consoleImage = consoleImage;
     }
+    
+    public final void loadImage() throws IOException {
+    	String path = System.getProperty("user.dir") + "\\..\\main\\pack3\\" + this.getImageName() + ".png";
+
+    	try {
+    		this.setImage(ImageIO.read(new File(path)));
+    	}
+    	catch(Exception e){
+    		path = System.getProperty("user.dir") + "\\..\\main\\pack3\\floor.png";
+    		this.setImage(ImageIO.read(new File(path)));
+    	}
+    }
 }
