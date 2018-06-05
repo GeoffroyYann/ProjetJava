@@ -3,7 +3,6 @@ package element.mobile;
 import element.Element;
 import model.ILevel;
 import model.IMobile;
-import model.MobileOrder;
 import model.Permeability;
 import model.Sprite;
 
