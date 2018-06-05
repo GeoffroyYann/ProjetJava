@@ -143,4 +143,17 @@ public abstract class Mobile extends Element implements IMobile{
     public void move() {
     	
     }
-}
+    
+    public void revive() {
+    	this.alive = true;
+    }
+    
+    public boolean setPos(int x, int y) {
+    	if(this.getLevel().getOnTheLevelXY(x, y).getPermeability() != Permeability.BLOCKING) {
+    		this.getPos().x = x;
+    		this.getPos().y = y;
+    		return true;
+    	}
+    	return false;
+    	}
+    }

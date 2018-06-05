@@ -1,18 +1,15 @@
 package element.mobile;
 
-import java.awt.Point;
 import java.util.Random;
 
-import model.IElement;
 import model.ILevel;
-import model.IMonster;
-import model.MobileOrder;
 import model.Sprite;
 
-public class Monster3 extends Monster{
-    private static Sprite sprite = new Sprite('K', "monster_3");
+public class Monster_4 extends Monster{
     
-    public Monster3(ILevel level, int x, int y) {
+    private static Sprite sprite = new Sprite('L', "monster_4");
+    
+    public Monster_4(ILevel level, int x, int y) {
         super(sprite, level, x, y);
     }
     
@@ -44,4 +41,5 @@ public class Monster3 extends Monster{
             }
         }
     }
+
 }

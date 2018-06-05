@@ -24,6 +24,11 @@ public abstract class Monster extends Mobile implements IMonster{
     
     public int collect() {
         this.die();
-        this.setSprite(deadSprite);
+		return 0;
+    }
+    
+    public void die() {
+    	super.die();
+    	this.setSprite(deadSprite);
     }
 }

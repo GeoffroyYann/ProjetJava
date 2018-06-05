@@ -1,11 +1,10 @@
 package facade;
 
-import java.awt.Point;
+import java.io.IOException;
 import java.sql.*;
-import java.util.*;
-
-import model.Example;
-import model.IElement;
+import element.mobile.Lorann;
+import model.ILevel;
+import model.IMobile;
 import model.IModel;
 
 /**
@@ -17,65 +16,96 @@ import model.IModel;
 @SuppressWarnings("deprecation")
 public final class ModelFacade implements IModel {
 
+	private ILevel level;
+	private Lorann lorann;
+	private IMobile[] purses;
+	private IMobile[] monsters;
+	private IMobile energy_Ball;
+	private IMobile gate;
+	private IMobile fireBall;
     /**
      * Instantiates a new model facade.
      */
-    public ModelFacade() {
+    public ModelFacade(int level) throws SQLException, IOException {
         super();
+        this.setLevel(new Level(level));
+        this.setLorann(new Lorann((int)this.level.getLorannPos().getX(), (int)this.level.getLorannPos().getY(), this.level));
+        purses = new IMobile[getLevel().getPurses().length];
+        monsters = new IMobile[getLevel().getMonsters().length];
+        
+        for(int i = 0; i < purses.length; i++) {
+        	purses[i] = this.getLevel().getPurses()[i];
+        	this.getLorann().addPurse(purses[i]);
+        }
+        
+        for(int i = 0; i < monsters.length; i++) {
+        	monsters[i] = this.getLevel().getPurses()[i];
+        	this.getLorann().addMonster(monsters[i]);
+        }
+        
+        energy_Ball = this.getLevel().getEnergy_Ball();
+        ((Lorann)this.getLorann()).addEnergy_Ball(energy_Ball);
+        
+        gate = this.getLevel().getGate();
+        ((Lorann)this.getLorann()).addGate(gate);
+        
+        fireBall = this.getLevel().getFireBall();
+        ((Lorann)this.getLorann()).add_FireBall(fireBall);
+        
+        
+        
     }
 
 
-	@Override
-	public Observable getObservable() {
-		// TODO Auto-generated method stub
-		return null;
+	public Lorann getLorann() {
+		return this.lorann;
 	}
 
-	@Override
-	public String getMap() {
-		// TODO Auto-generated method stub
-		return null;
+
+	public ILevel getLevel() {
+		return this.level;
 	}
 
-	@Override
-	public void loadMap(String key) {
-		// TODO Auto-generated method stub
-		
+	private void setLevel(ILevel level) {
+		this.level = level;
 	}
+	
+	private void setLorann(Lorann lorann) {
+		this.lorann = lorann;
+	}
+	
+	public IMobile[] getPurses() {
+		return purses;
+	}
+	
+	private void setPurses(IMobile[] purses) {
+		this.purses = purses;
+	}
+	
+	public IMobile[] getMonsters() {
+		return monsters;
+	}
+	
+	private void setMonsters(IMobile[] monsters) {
+		this.monsters = monsters;
+	}
+	
+	public IMobile getEnergy_Ball() {
+		return this.energy_Ball;
+	}
+	
+	public IMobile getGate() {
+		return this.gate;
+	}
+	
+	public boolean hasLorannWon() {
+		return ((Lorann)this.getLorann()).hasWon();
+	}
+	
+	public IMobile getFireBall() {
+		return this.fireBall;
+	}
+	
 
-	@Override
-	public IElement element(char c, Point pos) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public String[][] getHighScore() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void upNameAndScore(int score, String nickname) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Example getExampleById(int id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Example getExampleByName(String name) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Example> getAllExamples() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

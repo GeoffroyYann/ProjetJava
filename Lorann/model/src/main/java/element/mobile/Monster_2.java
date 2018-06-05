@@ -8,13 +8,13 @@ import model.IMonster;
 import model.MobileOrder;
 import model.Sprite;
 
-public class Monster2 extends Monster{
+public class Monster_2 extends Monster{
     
     private static Sprite sprite = new Sprite('J', "monster_2");
     
     public boolean goingRight = true;
     
-    public Monster2(ILevel level, int x, int y) {
+    public Monster_2(ILevel level, int x, int y) {
         super(sprite, level, x, y);
     }
     

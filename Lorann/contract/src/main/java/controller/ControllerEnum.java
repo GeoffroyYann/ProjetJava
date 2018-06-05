@@ -1,20 +1,8 @@
 package controller;
 
-public enum ControllerEnum {
+import java.awt.event.KeyEvent;
+
+public interface ControllerEnum {
     
-    Map1,
-    Map2,
-    Map3,
-    Map4,
-    Map5,
-    Map6,
-    TEST,
-    MENU,
-    WORKSHOP,
-    MoveUp,
-    MoveDown,
-    MoveRight,
-    MoveLeft,
-    Shot,
-    Error,   
+    void performOrder(KeyEvent userOrder);   
     }

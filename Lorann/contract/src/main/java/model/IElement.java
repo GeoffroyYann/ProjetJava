@@ -3,7 +3,9 @@ package model;
 
 import java.awt.Image;
 
-public interface IElement {
+import showboard.ISquare;
+
+public interface IElement extends ISquare {
     
     Permeability getPermeability();
     

@@ -8,13 +8,13 @@ public interface ILevel {
     int getHeight();
     IElement getOnTheLevelXY(int x, int y);
     void setOnTheLevelXY(int x, int y, IElement element);
-    boolean setSpellOnTheLevelXY(int x, int y, IElement fireBall);
     Observable getObservable();
     void setElementHasChanged();
-    Point getLorannPosition();
+    Point getLorannPos();
     IMobile[] getPurses();
     IMobile[] getMonsters();
     IMobile getEnergy_Ball();
-    IMobile[] getGate();
+    IMobile getGate();
+    IMobile getFireBall();
 
 }

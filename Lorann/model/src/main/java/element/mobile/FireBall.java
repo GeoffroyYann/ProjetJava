@@ -121,10 +121,10 @@ public class FireBall extends Mobile {
     }
     
     public void spawn(int x, int y, int direction) {
-        if(this.setPosition(x, y)) {
+        if(this.setPos(x, y)) {
             this.direction = direction;
             this.setSprite(sprite_1);
-            this.revive;
+            this.revive();
         }
     }
     

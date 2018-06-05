@@ -15,47 +15,15 @@ import java.util.List;
 @SuppressWarnings("deprecation")
 public interface IModel {
 
-    Observable getObservable();
+    ILevel getLevel();
+    IMobile getLorann();
+    IMobile[] getPurses();
+    IMobile[] getMonsters();
+    IMobile getEnergy_Ball();
+    IMobile getGate();
+    IMobile getFireBall();
+    boolean hasLorannWon();
     
-    String getMap();
     
-    void loadMap(String key);
-    
-    IElement element(char c, Point pos);
-    
-    String[][] getHighScore();
-    
-    void upNameAndScore(final int score, final String nickname);
-    
-    /**
-     * Gets the example by id.
-     *
-     * @param id
-     *            the id
-     * @return the example by id
-     * @throws SQLException
-     *             the SQL exception
-     */
-    Example getExampleById(int id) throws SQLException;
-
-    /**
-     * Gets the example by name.
-     *
-     * @param name
-     *            the name
-     * @return the example by name
-     * @throws SQLException
-     *             the SQL exception
-     */
-    Example getExampleByName(String name) throws SQLException;
-
-    /**
-     * Gets the all examples.
-     *
-     * @return the all examples
-     * @throws SQLException
-     *             the SQL exception
-     */
-    List<Example> getAllExamples() throws SQLException;
 }
 
